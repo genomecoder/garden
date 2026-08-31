@@ -27,6 +27,7 @@
 .toolbar-actions {
   display: flex;
   gap: 8px;
+  align-items: center;
 }
 
 .toolbar-actions button {
@@ -54,4 +55,121 @@
 
 .toolbar-actions .btn-danger:hover {
   background: #c0392b;
+}
+
+/* Layouts dropdown */
+
+.layouts-wrapper {
+  position: relative;
+}
+
+.layouts-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 6px;
+  width: 280px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  z-index: 200;
+  color: #333;
+}
+
+.layouts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.btn-save-as {
+  padding: 4px 10px !important;
+  font-size: 12px !important;
+  background: #27ae60 !important;
+  border-radius: 4px !important;
+}
+
+.btn-save-as:hover {
+  background: #219a52 !important;
+}
+
+.layouts-empty {
+  padding: 20px 14px;
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+}
+
+.layouts-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.layouts-list li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+}
+
+.layouts-list li.active {
+  background: #ebf5fb;
+}
+
+.layout-load {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 8px !important;
+  background: none !important;
+  color: #333 !important;
+  text-align: left !important;
+  border-radius: 4px !important;
+  font-size: 13px !important;
+}
+
+.layout-load:hover {
+  background: #f0f0f0 !important;
+}
+
+.layout-name {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.layout-date {
+  font-size: 11px;
+  color: #999;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.layout-delete {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  background: none !important;
+  color: #ccc !important;
+  font-size: 13px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout-delete:hover {
+  background: rgba(231, 76, 60, 0.15) !important;
+  color: #e74c3c !important;
 }

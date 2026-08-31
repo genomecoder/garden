@@ -25,3 +25,4 @@ export const PIXELS_PER_FOOT = 20;
 export const CANVAS_GRID_SIZE = PIXELS_PER_FOOT;
 
 export const STORAGE_KEY = 'garden-planner-state';
+export const LAYOUTS_KEY = 'garden-planner-layouts';
