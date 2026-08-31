@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { GardenBed, GardenAction } from '../../types';
-import { PIXELS_PER_FOOT, PLANT_CATALOG } from '../../constants';
+import { PIXELS_PER_FOOT, PLANT_CATALOG, BED_COLORS } from '../../constants';
 
 interface BedDimensionsProps {
   bed: GardenBed;
@@ -93,6 +93,30 @@ export function BedDimensions({ bed, dispatch }: BedDimensionsProps) {
             onKeyDown={(e) => handleKeyDown(e, applyHeight)}
           />
           <span className="dim-unit">ft</span>
+        </div>
+      </div>
+      <div className="dim-row color-row">
+        <label>Color</label>
+        <div className="color-swatches">
+          {BED_COLORS.map((c) => (
+            <button
+              key={c}
+              className={`color-swatch ${bed.color === c ? 'active' : ''}`}
+              style={{ background: c }}
+              onClick={() =>
+                dispatch({ type: 'COLOR_BED', payload: { id: bed.id, color: c } })
+              }
+            />
+          ))}
+          <input
+            type="color"
+            className="color-custom"
+            value={bed.color}
+            onChange={(e) =>
+              dispatch({ type: 'COLOR_BED', payload: { id: bed.id, color: e.target.value } })
+            }
+            title="Custom color"
+          />
         </div>
       </div>
       {bed.plants.length > 0 && (

@@ -8,6 +8,7 @@ export interface GardenBed {
   y: number;
   width: number;
   height: number;
+  color: string;
   plants: PlantInstance[];
 }
 
@@ -39,6 +40,7 @@ export type GardenAction =
   | { type: 'REMOVE_PLANT'; payload: { bedId: string; plantId: string } }
   | { type: 'SET_NAME'; payload: { name: string } }
   | { type: 'RENAME_BED'; payload: { id: string; label: string } }
+  | { type: 'COLOR_BED'; payload: { id: string; color: string } }
   | { type: 'PASTE_BED'; payload: { bed: GardenBed } }
   | { type: 'LOAD_GARDEN'; payload: GardenState }
   | { type: 'CLEAR_GARDEN' };

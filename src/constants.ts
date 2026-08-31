@@ -21,6 +21,19 @@ export const BED_FILL = '#8B6914';
 export const BED_STROKE = '#5C4A0E';
 export const BED_SELECTED_STROKE = '#3498db';
 
+export const BED_COLORS = [
+  '#8B6914', // brown (default)
+  '#5C4A0E', // dark brown
+  '#A0522D', // sienna
+  '#6B8E23', // olive
+  '#2E8B57', // sea green
+  '#4682B4', // steel blue
+  '#8B4513', // saddle brown
+  '#CD853F', // peru
+  '#D2691E', // chocolate
+  '#556B2F', // dark olive
+];
+
 export const PIXELS_PER_FOOT = 20;
 export const CANVAS_GRID_SIZE = PIXELS_PER_FOOT;
 

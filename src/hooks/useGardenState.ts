@@ -1,7 +1,7 @@
 import { useReducer, useEffect, useRef, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import type { GardenState, GardenAction, GardenBed } from '../types';
-import { DEFAULT_BED_WIDTH, DEFAULT_BED_HEIGHT, DEFAULT_BED_RADIUS } from '../constants';
+import { DEFAULT_BED_WIDTH, DEFAULT_BED_HEIGHT, DEFAULT_BED_RADIUS, BED_FILL } from '../constants';
 import { loadGarden } from '../utils/storage';
 
 const MAX_HISTORY = 50;
@@ -35,6 +35,7 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
             id: uuidv4(),
             shape,
             label: '',
+            color: BED_FILL,
             x: x - width / 2,
             y: y - height / 2,
             width,
@@ -99,6 +100,15 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
         beds: state.beds.map((b) =>
           b.id === action.payload.id
             ? { ...b, label: action.payload.label }
+            : b
+        ),
+      };
+    case 'COLOR_BED':
+      return {
+        ...state,
+        beds: state.beds.map((b) =>
+          b.id === action.payload.id
+            ? { ...b, color: action.payload.color }
             : b
         ),
       };

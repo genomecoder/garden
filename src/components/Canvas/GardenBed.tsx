@@ -1,7 +1,7 @@
 import { Rect, Ellipse, Group, Text } from 'react-konva';
 import Konva from 'konva';
 import type { GardenBed as GardenBedType, GardenAction } from '../../types';
-import { BED_FILL, BED_STROKE, BED_SELECTED_STROKE, PIXELS_PER_FOOT } from '../../constants';
+import { BED_STROKE, BED_SELECTED_STROKE, PIXELS_PER_FOOT } from '../../constants';
 import { computePlantGrid } from '../../utils/geometry';
 import { PlantIcon } from './PlantIcon';
 
@@ -60,7 +60,7 @@ export function GardenBedComponent({
         <Rect
           width={bed.width}
           height={bed.height}
-          fill={BED_FILL}
+          fill={bed.color}
           stroke={stroke}
           strokeWidth={strokeWidth}
           cornerRadius={4}
@@ -71,7 +71,7 @@ export function GardenBedComponent({
           y={bed.height / 2}
           radiusX={bed.width / 2}
           radiusY={bed.height / 2}
-          fill={BED_FILL}
+          fill={bed.color}
           stroke={stroke}
           strokeWidth={strokeWidth}
         />

@@ -82,6 +82,43 @@
   color: #bdc3c7;
 }
 
+.color-row {
+  flex-wrap: wrap;
+}
+
+.color-swatches {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.color-swatch {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.color-swatch:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.color-swatch.active {
+  border-color: #fff;
+}
+
+.color-custom {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid #5a6a7a;
+  border-radius: 4px;
+  cursor: pointer;
+  background: none;
+}
+
 .dim-input-wrap {
   display: flex;
   align-items: center;
