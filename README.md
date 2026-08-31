@@ -12,7 +12,7 @@ A drag-and-drop garden planning web app. Place garden bed shapes on a canvas, dr
 - **Bed rotation** — Rotate beds by dragging the transformer handle on the canvas or entering a degree value in the sidebar
 - **Lock beds** — Lock a bed in place via the sidebar to prevent moving, resizing, rotating, or deleting it
 - **Dimensions in feet** — Select a bed to edit its width/height in feet via the sidebar
-- **Copy and paste** — Select a bed and use Ctrl+C / Ctrl+V or right-click context menu to duplicate it (including plants)
+- **Duplicate bed** — Duplicate the selected bed (including plants) via the sidebar button, Ctrl+C / Ctrl+V, or right-click context menu
 - **Right-click context menu** — Right-click a bed for Copy, Paste, and Delete options; right-click empty canvas to paste
 - **Undo / Redo** — Undo and redo changes via toolbar buttons or Ctrl+Z / Ctrl+Y (up to 50 steps)
 - **Export as PNG** — Export the canvas as a high-resolution PNG image via the toolbar
