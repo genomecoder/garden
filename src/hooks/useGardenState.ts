@@ -137,5 +137,5 @@ export function useGardenState() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [state.selectedBedId, state.beds]);
 
-  return { state, dispatch };
+  return { state, dispatch, clipboardRef };
 }

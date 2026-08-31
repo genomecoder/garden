@@ -5,14 +5,14 @@ import { Canvas } from './components/Canvas/Canvas';
 import './App.css';
 
 function App() {
-  const { state, dispatch } = useGardenState();
+  const { state, dispatch, clipboardRef } = useGardenState();
 
   return (
     <div className="app">
       <Toolbar state={state} dispatch={dispatch} />
       <div className="app-body">
         <Sidebar state={state} dispatch={dispatch} />
-        <Canvas state={state} dispatch={dispatch} />
+        <Canvas state={state} dispatch={dispatch} clipboardRef={clipboardRef} />
       </div>
     </div>
   );
