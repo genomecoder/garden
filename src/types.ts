@@ -10,6 +10,7 @@ export interface GardenBed {
   height: number;
   color: string;
   rotation: number;
+  locked: boolean;
   plants: PlantInstance[];
 }
 
@@ -43,6 +44,7 @@ export type GardenAction =
   | { type: 'RENAME_BED'; payload: { id: string; label: string } }
   | { type: 'COLOR_BED'; payload: { id: string; color: string } }
   | { type: 'ROTATE_BED'; payload: { id: string; rotation: number } }
+  | { type: 'LOCK_BED'; payload: { id: string; locked: boolean } }
   | { type: 'PASTE_BED'; payload: { bed: GardenBed } }
   | { type: 'LOAD_GARDEN'; payload: GardenState }
   | { type: 'CLEAR_GARDEN' };

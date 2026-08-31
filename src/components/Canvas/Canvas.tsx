@@ -365,6 +365,7 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
           ))}
           <TransformerWrapper
             selectedBedId={state.selectedBedId}
+            isLocked={state.beds.find((b) => b.id === state.selectedBedId)?.locked ?? false}
             stageRef={stageRef}
             onTransformEnd={handleTransformEnd}
           />

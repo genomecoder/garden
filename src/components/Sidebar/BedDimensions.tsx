@@ -165,12 +165,22 @@ export function BedDimensions({ bed, dispatch }: BedDimensionsProps) {
           })}
         </div>
       )}
-      <button
-        className="btn-delete-bed"
-        onClick={() => dispatch({ type: 'DELETE_BED', payload: { id: bed.id } })}
-      >
-        Delete Bed
-      </button>
+      <div className="bed-actions">
+        <button
+          className={`btn-lock-bed ${bed.locked ? 'locked' : ''}`}
+          onClick={() =>
+            dispatch({ type: 'LOCK_BED', payload: { id: bed.id, locked: !bed.locked } })
+          }
+        >
+          {bed.locked ? 'Unlock Bed' : 'Lock Bed'}
+        </button>
+        <button
+          className="btn-delete-bed"
+          onClick={() => dispatch({ type: 'DELETE_BED', payload: { id: bed.id } })}
+        >
+          Delete Bed
+        </button>
+      </div>
     </div>
   );
 }

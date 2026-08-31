@@ -4,12 +4,14 @@ import Konva from 'konva';
 
 interface TransformerWrapperProps {
   selectedBedId: string | null;
+  isLocked: boolean;
   stageRef: React.RefObject<Konva.Stage | null>;
   onTransformEnd: (id: string, width: number, height: number, rotation: number) => void;
 }
 
 export function TransformerWrapper({
   selectedBedId,
+  isLocked,
   stageRef,
   onTransformEnd,
 }: TransformerWrapperProps) {
@@ -20,7 +22,7 @@ export function TransformerWrapper({
     const stage = stageRef.current;
     if (!tr || !stage) return;
 
-    if (!selectedBedId) {
+    if (!selectedBedId || isLocked) {
       tr.nodes([]);
       tr.getLayer()?.batchDraw();
       return;
@@ -33,7 +35,7 @@ export function TransformerWrapper({
     } else {
       tr.nodes([]);
     }
-  }, [selectedBedId, stageRef]);
+  }, [selectedBedId, isLocked, stageRef]);
 
   return (
     <Transformer

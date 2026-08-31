@@ -56,7 +56,7 @@ export function GardenBedComponent({
       y={bed.y + bed.height / 2}
       rotation={bed.rotation}
       offset={{ x: bed.width / 2, y: bed.height / 2 }}
-      draggable
+      draggable={!bed.locked}
       onDragEnd={handleDragEnd}
       onClick={handleClick}
       onTap={handleClick}
