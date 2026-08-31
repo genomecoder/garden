@@ -31,6 +31,7 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
   const [contextMenu, setContextMenu] = useState<ContextMenuState | null>(null);
   const [scale, setScale] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [snapToGrid, setSnapToGrid] = useState(true);
   const isPanningRef = useRef(false);
   const isSpaceRef = useRef(false);
 
@@ -358,6 +359,7 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
               isSelected={bed.id === state.selectedBedId}
               dispatch={dispatch}
               onSelect={handleSelect}
+              snapToGrid={snapToGrid}
             />
           ))}
           <TransformerWrapper
@@ -374,6 +376,13 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
       <div className="zoom-indicator">
         <button onClick={handleResetView} title="Reset view">
           {zoomPercent}%
+        </button>
+        <button
+          className={`btn-snap ${snapToGrid ? 'active' : ''}`}
+          onClick={() => setSnapToGrid((v) => !v)}
+          title="Snap to grid"
+        >
+          Snap
         </button>
       </div>
       {contextMenu && (

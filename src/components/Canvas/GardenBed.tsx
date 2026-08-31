@@ -1,7 +1,7 @@
 import { Rect, Ellipse, Group, Text } from 'react-konva';
 import Konva from 'konva';
 import type { GardenBed as GardenBedType, GardenAction } from '../../types';
-import { BED_FILL, BED_STROKE, BED_SELECTED_STROKE } from '../../constants';
+import { BED_FILL, BED_STROKE, BED_SELECTED_STROKE, PIXELS_PER_FOOT } from '../../constants';
 import { computePlantGrid } from '../../utils/geometry';
 import { PlantIcon } from './PlantIcon';
 
@@ -10,6 +10,7 @@ interface GardenBedProps {
   isSelected: boolean;
   dispatch: React.Dispatch<GardenAction>;
   onSelect: (id: string) => void;
+  snapToGrid: boolean;
 }
 
 export function GardenBedComponent({
@@ -17,15 +18,27 @@ export function GardenBedComponent({
   isSelected,
   dispatch,
   onSelect,
+  snapToGrid,
 }: GardenBedProps) {
   const plantPositions = computePlantGrid(bed, bed.plants.length);
   const stroke = isSelected ? BED_SELECTED_STROKE : BED_STROKE;
   const strokeWidth = isSelected ? 3 : 2;
 
+  const snap = (val: number) =>
+    Math.round(val / PIXELS_PER_FOOT) * PIXELS_PER_FOOT;
+
   const handleDragEnd = (e: Konva.KonvaEventObject<DragEvent>) => {
+    let x = e.target.x();
+    let y = e.target.y();
+    if (snapToGrid) {
+      x = snap(x);
+      y = snap(y);
+      e.target.x(x);
+      e.target.y(y);
+    }
     dispatch({
       type: 'MOVE_BED',
-      payload: { id: bed.id, x: e.target.x(), y: e.target.y() },
+      payload: { id: bed.id, x, y },
     });
   };
 

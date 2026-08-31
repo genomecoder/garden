@@ -56,6 +56,8 @@
   position: absolute;
   bottom: 16px;
   left: 16px;
+  display: flex;
+  gap: 6px;
 }
 
 .zoom-indicator button {
@@ -72,6 +74,16 @@
 
 .zoom-indicator button:hover {
   background: #fff;
+}
+
+.btn-snap.active {
+  background: #3498db;
+  color: #fff;
+  border-color: #2980b9;
+}
+
+.btn-snap.active:hover {
+  background: #2980b9;
 }
 
 .context-menu {
