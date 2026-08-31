@@ -5,7 +5,7 @@ import Konva from 'konva';
 interface TransformerWrapperProps {
   selectedBedId: string | null;
   stageRef: React.RefObject<Konva.Stage | null>;
-  onTransformEnd: (id: string, width: number, height: number) => void;
+  onTransformEnd: (id: string, width: number, height: number, rotation: number) => void;
 }
 
 export function TransformerWrapper({
@@ -38,7 +38,7 @@ export function TransformerWrapper({
   return (
     <Transformer
       ref={trRef}
-      rotateEnabled={false}
+      rotateEnabled={true}
       keepRatio={false}
       boundBoxFunc={(_oldBox, newBox) => {
         if (newBox.width < 40 || newBox.height < 40) {
@@ -72,11 +72,13 @@ export function TransformerWrapper({
           newHeight = Math.max(40, (shape as Konva.Ellipse).radiusY() * 2 * scaleY);
         }
 
-        // Reset scale
+        const rotation = node.rotation();
+
+        // Reset scale (but keep rotation on node — it's managed by state)
         node.scaleX(1);
         node.scaleY(1);
 
-        onTransformEnd(selectedBedId, newWidth, newHeight);
+        onTransformEnd(selectedBedId, newWidth, newHeight, rotation);
       }}
     />
   );

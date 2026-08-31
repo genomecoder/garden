@@ -28,13 +28,17 @@ export function GardenBedComponent({
     Math.round(val / PIXELS_PER_FOOT) * PIXELS_PER_FOOT;
 
   const handleDragEnd = (e: Konva.KonvaEventObject<DragEvent>) => {
-    let x = e.target.x();
-    let y = e.target.y();
+    // Group position is center-based (offset applied), convert back to top-left for state
+    let cx = e.target.x();
+    let cy = e.target.y();
+    let x = cx - bed.width / 2;
+    let y = cy - bed.height / 2;
     if (snapToGrid) {
       x = snap(x);
       y = snap(y);
-      e.target.x(x);
-      e.target.y(y);
+      // Update group position to snapped center
+      e.target.x(x + bed.width / 2);
+      e.target.y(y + bed.height / 2);
     }
     dispatch({
       type: 'MOVE_BED',
@@ -48,8 +52,10 @@ export function GardenBedComponent({
 
   return (
     <Group
-      x={bed.x}
-      y={bed.y}
+      x={bed.x + bed.width / 2}
+      y={bed.y + bed.height / 2}
+      rotation={bed.rotation}
+      offset={{ x: bed.width / 2, y: bed.height / 2 }}
       draggable
       onDragEnd={handleDragEnd}
       onClick={handleClick}

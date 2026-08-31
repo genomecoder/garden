@@ -184,8 +184,9 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
     }
   };
 
-  const handleTransformEnd = (id: string, width: number, height: number) => {
+  const handleTransformEnd = (id: string, width: number, height: number, rotation: number) => {
     dispatch({ type: 'RESIZE_BED', payload: { id, width, height } });
+    dispatch({ type: 'ROTATE_BED', payload: { id, rotation } });
   };
 
   const handleSelect = (id: string) => {

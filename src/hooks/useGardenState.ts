@@ -36,6 +36,7 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
             shape,
             label: '',
             color: BED_FILL,
+            rotation: 0,
             x: x - width / 2,
             y: y - height / 2,
             width,
@@ -109,6 +110,15 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
         beds: state.beds.map((b) =>
           b.id === action.payload.id
             ? { ...b, color: action.payload.color }
+            : b
+        ),
+      };
+    case 'ROTATE_BED':
+      return {
+        ...state,
+        beds: state.beds.map((b) =>
+          b.id === action.payload.id
+            ? { ...b, rotation: action.payload.rotation }
             : b
         ),
       };

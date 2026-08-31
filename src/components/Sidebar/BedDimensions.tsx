@@ -95,6 +95,25 @@ export function BedDimensions({ bed, dispatch }: BedDimensionsProps) {
           <span className="dim-unit">ft</span>
         </div>
       </div>
+      <div className="dim-row">
+        <label>Rotation</label>
+        <div className="dim-input-wrap">
+          <input
+            type="number"
+            min="0"
+            max="360"
+            step="1"
+            value={Math.round(bed.rotation)}
+            onChange={(e) => {
+              const val = parseFloat(e.target.value);
+              if (!isNaN(val)) {
+                dispatch({ type: 'ROTATE_BED', payload: { id: bed.id, rotation: val % 360 } });
+              }
+            }}
+          />
+          <span className="dim-unit">deg</span>
+        </div>
+      </div>
       <div className="dim-row color-row">
         <label>Color</label>
         <div className="color-swatches">
