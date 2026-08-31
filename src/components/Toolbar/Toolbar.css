@@ -39,8 +39,13 @@
   color: white;
 }
 
-.toolbar-actions button:hover {
+.toolbar-actions button:hover:not(:disabled) {
   background: #2980b9;
+}
+
+.toolbar-actions button:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 .toolbar-actions .btn-danger {

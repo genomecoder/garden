@@ -5,9 +5,13 @@ import './Toolbar.css';
 interface ToolbarProps {
   state: GardenState;
   dispatch: React.Dispatch<GardenAction>;
+  undo: () => void;
+  redo: () => void;
+  canUndo: boolean;
+  canRedo: boolean;
 }
 
-export function Toolbar({ state, dispatch }: ToolbarProps) {
+export function Toolbar({ state, dispatch, undo, redo, canUndo, canRedo }: ToolbarProps) {
   const handleSave = () => {
     saveGarden(state);
     alert('Garden saved!');
@@ -31,6 +35,12 @@ export function Toolbar({ state, dispatch }: ToolbarProps) {
         }
       />
       <div className="toolbar-actions">
+        <button onClick={undo} disabled={!canUndo} title="Undo (Ctrl+Z)">
+          Undo
+        </button>
+        <button onClick={redo} disabled={!canRedo} title="Redo (Ctrl+Y)">
+          Redo
+        </button>
         <button onClick={handleSave}>Save</button>
         <button onClick={handleClear} className="btn-danger">
           Clear

@@ -1,14 +1,25 @@
-import { useReducer, useEffect, useRef } from 'react';
+import { useReducer, useEffect, useRef, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import type { GardenState, GardenAction, GardenBed } from '../types';
 import { DEFAULT_BED_WIDTH, DEFAULT_BED_HEIGHT, DEFAULT_BED_RADIUS } from '../constants';
 import { loadGarden } from '../utils/storage';
+
+const MAX_HISTORY = 50;
 
 const initialState: GardenState = {
   name: 'My Garden',
   beds: [],
   selectedBedId: null,
 };
+
+// Actions that don't modify data and shouldn't create history entries
+const TRANSIENT_ACTIONS = new Set(['SELECT_BED', 'UNDO', 'REDO']);
+
+interface HistoryState {
+  past: GardenState[];
+  present: GardenState;
+  future: GardenState[];
+}
 
 function gardenReducer(state: GardenState, action: GardenAction): GardenState {
   switch (action.type) {
@@ -117,11 +128,76 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
   }
 }
 
+function historyReducer(
+  histState: HistoryState,
+  action: GardenAction
+): HistoryState {
+  if (action.type === 'UNDO') {
+    if (histState.past.length === 0) return histState;
+    const previous = histState.past[histState.past.length - 1];
+    return {
+      past: histState.past.slice(0, -1),
+      present: { ...previous, selectedBedId: histState.present.selectedBedId },
+      future: [histState.present, ...histState.future],
+    };
+  }
+
+  if (action.type === 'REDO') {
+    if (histState.future.length === 0) return histState;
+    const next = histState.future[0];
+    return {
+      past: [...histState.past, histState.present],
+      present: { ...next, selectedBedId: histState.present.selectedBedId },
+      future: histState.future.slice(1),
+    };
+  }
+
+  const newPresent = gardenReducer(histState.present, action);
+
+  if (newPresent === histState.present) return histState;
+
+  // Transient actions don't create history entries
+  if (TRANSIENT_ACTIONS.has(action.type)) {
+    return { ...histState, present: newPresent };
+  }
+
+  // LOAD_GARDEN and CLEAR_GARDEN reset history
+  if (action.type === 'LOAD_GARDEN' || action.type === 'CLEAR_GARDEN') {
+    return { past: [], present: newPresent, future: [] };
+  }
+
+  return {
+    past: [...histState.past.slice(-MAX_HISTORY + 1), histState.present],
+    present: newPresent,
+    future: [],
+  };
+}
+
 export function useGardenState() {
-  const [state, dispatch] = useReducer(gardenReducer, initialState, () => {
-    const saved = loadGarden();
-    return saved ?? initialState;
-  });
+  const [histState, histDispatch] = useReducer(
+    historyReducer,
+    undefined,
+    (): HistoryState => {
+      const saved = loadGarden();
+      return { past: [], present: saved ?? initialState, future: [] };
+    }
+  );
+
+  const state = histState.present;
+  const canUndo = histState.past.length > 0;
+  const canRedo = histState.future.length > 0;
+
+  const dispatch = useCallback((action: GardenAction) => {
+    histDispatch(action);
+  }, []);
+
+  const undo = useCallback(() => {
+    histDispatch({ type: 'UNDO' } as GardenAction);
+  }, []);
+
+  const redo = useCallback(() => {
+    histDispatch({ type: 'REDO' } as GardenAction);
+  }, []);
 
   const clipboardRef = useRef<GardenBed | null>(null);
 
@@ -135,6 +211,16 @@ export function useGardenState() {
       }
 
       const mod = e.ctrlKey || e.metaKey;
+      if (mod && e.key === 'z' && !e.shiftKey) {
+        e.preventDefault();
+        undo();
+        return;
+      }
+      if (mod && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
+        e.preventDefault();
+        redo();
+        return;
+      }
       if (mod && e.key === 'c' && state.selectedBedId) {
         const bed = state.beds.find((b) => b.id === state.selectedBedId);
         if (bed) clipboardRef.current = bed;
@@ -145,7 +231,7 @@ export function useGardenState() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [state.selectedBedId, state.beds]);
+  }, [state.selectedBedId, state.beds, dispatch, undo, redo]);
 
-  return { state, dispatch, clipboardRef };
+  return { state, dispatch, clipboardRef, undo, redo, canUndo, canRedo };
 }
