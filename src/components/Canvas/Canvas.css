@@ -1,0 +1,53 @@
+.canvas-container {
+  flex: 1;
+  background: #f5f5f0;
+  overflow: hidden;
+  position: relative;
+}
+
+.scale-indicator {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 12px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+}
+
+.scale-bar {
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+  position: relative;
+}
+
+.scale-bar::before,
+.scale-bar::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  width: 2px;
+  height: 10px;
+  background: #333;
+  border-radius: 1px;
+}
+
+.scale-bar::before {
+  left: 0;
+}
+
+.scale-bar::after {
+  right: 0;
+}
+
+.scale-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
