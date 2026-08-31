@@ -6,7 +6,8 @@ A drag-and-drop garden planning web app. Place garden bed shapes on a canvas, dr
 
 - **Drag-and-drop beds** — Drag rectangle or circle bed shapes from the sidebar onto the canvas
 - **Move and resize** — Drag beds around the canvas; click to select and resize with handles
-- **Plant placement** — Drag plants from a catalog of 10 types onto any bed; remove individual plants from the sidebar
+- **Plant placement** — Drag plants from the catalog onto any bed; remove individual plants from the sidebar
+- **Custom plants** — Add your own plant types with a name, emoji icon, and color via the sidebar; remove custom plants anytime
 - **Bed labels** — Select a bed and type a label in the sidebar; it displays centered above the bed on the canvas
 - **Bed colors** — Choose from 10 preset colors or pick a custom color for each bed via the sidebar
 - **Bed rotation** — Rotate beds by dragging the transformer handle on the canvas or entering a degree value in the sidebar
