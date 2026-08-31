@@ -1,6 +1,6 @@
 import { Rect, Ellipse, Group, Text } from 'react-konva';
 import Konva from 'konva';
-import type { GardenBed as GardenBedType, GardenAction } from '../../types';
+import type { GardenBed as GardenBedType, GardenAction, PlantType } from '../../types';
 import { BED_STROKE, BED_SELECTED_STROKE, PIXELS_PER_FOOT } from '../../constants';
 import { computePlantGrid } from '../../utils/geometry';
 import { PlantIcon } from './PlantIcon';
@@ -11,6 +11,7 @@ interface GardenBedProps {
   dispatch: React.Dispatch<GardenAction>;
   onSelect: (id: string) => void;
   snapToGrid: boolean;
+  customPlants: PlantType[];
 }
 
 export function GardenBedComponent({
@@ -19,6 +20,7 @@ export function GardenBedComponent({
   dispatch,
   onSelect,
   snapToGrid,
+  customPlants,
 }: GardenBedProps) {
   const plantPositions = computePlantGrid(bed, bed.plants.length);
   const stroke = isSelected ? BED_SELECTED_STROKE : BED_STROKE;
@@ -104,6 +106,7 @@ export function GardenBedComponent({
             plantTypeId={plant.plantTypeId}
             x={pos.x}
             y={pos.y}
+            customPlants={customPlants}
           />
         );
       })}

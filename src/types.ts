@@ -29,6 +29,7 @@ export interface PlantInstance {
 export interface GardenState {
   name: string;
   beds: GardenBed[];
+  customPlants: PlantType[];
   selectedBedId: string | null;
 }
 
@@ -46,5 +47,7 @@ export type GardenAction =
   | { type: 'ROTATE_BED'; payload: { id: string; rotation: number } }
   | { type: 'LOCK_BED'; payload: { id: string; locked: boolean } }
   | { type: 'PASTE_BED'; payload: { bed: GardenBed } }
+  | { type: 'ADD_PLANT_TYPE'; payload: PlantType }
+  | { type: 'REMOVE_PLANT_TYPE'; payload: { id: string } }
   | { type: 'LOAD_GARDEN'; payload: GardenState }
   | { type: 'CLEAR_GARDEN' };

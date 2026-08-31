@@ -9,6 +9,7 @@ const MAX_HISTORY = 50;
 const initialState: GardenState = {
   name: 'My Garden',
   beds: [],
+  customPlants: [],
   selectedBedId: null,
 };
 
@@ -150,10 +151,20 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
     }
     case 'SET_NAME':
       return { ...state, name: action.payload.name };
+    case 'ADD_PLANT_TYPE':
+      return {
+        ...state,
+        customPlants: [...state.customPlants, action.payload],
+      };
+    case 'REMOVE_PLANT_TYPE':
+      return {
+        ...state,
+        customPlants: state.customPlants.filter((p) => p.id !== action.payload.id),
+      };
     case 'LOAD_GARDEN':
-      return { ...action.payload, selectedBedId: null };
+      return { ...action.payload, customPlants: action.payload.customPlants ?? [], selectedBedId: null };
     case 'CLEAR_GARDEN':
-      return { ...initialState, name: state.name };
+      return { ...initialState, name: state.name, customPlants: state.customPlants };
     default:
       return state;
   }

@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import type { GardenBed, GardenAction } from '../../types';
+import type { GardenBed, GardenAction, PlantType } from '../../types';
 import { PIXELS_PER_FOOT, PLANT_CATALOG, BED_COLORS } from '../../constants';
 
 interface BedDimensionsProps {
   bed: GardenBed;
   dispatch: React.Dispatch<GardenAction>;
+  customPlants: PlantType[];
 }
 
 function pxToFeet(px: number): string {
@@ -17,7 +18,7 @@ function feetToPx(feet: string): number {
   return val * PIXELS_PER_FOOT;
 }
 
-export function BedDimensions({ bed, dispatch }: BedDimensionsProps) {
+export function BedDimensions({ bed, dispatch, customPlants }: BedDimensionsProps) {
   const [widthFt, setWidthFt] = useState(pxToFeet(bed.width));
   const [heightFt, setHeightFt] = useState(pxToFeet(bed.height));
 
@@ -142,7 +143,8 @@ export function BedDimensions({ bed, dispatch }: BedDimensionsProps) {
         <div className="bed-plants-list">
           <h3>Plants ({bed.plants.length})</h3>
           {bed.plants.map((plant) => {
-            const info = PLANT_CATALOG.find((p) => p.id === plant.plantTypeId);
+            const info = PLANT_CATALOG.find((p) => p.id === plant.plantTypeId)
+              ?? customPlants.find((p) => p.id === plant.plantTypeId);
             return (
               <div key={plant.id} className="bed-plant-row">
                 <span className="bed-plant-name">

@@ -1,14 +1,17 @@
 import { Circle, Text, Group } from 'react-konva';
+import type { PlantType } from '../../types';
 import { PLANT_CATALOG } from '../../constants';
 
 interface PlantIconProps {
   plantTypeId: string;
   x: number;
   y: number;
+  customPlants?: PlantType[];
 }
 
-export function PlantIcon({ plantTypeId, x, y }: PlantIconProps) {
-  const plant = PLANT_CATALOG.find((p) => p.id === plantTypeId);
+export function PlantIcon({ plantTypeId, x, y, customPlants = [] }: PlantIconProps) {
+  const plant = PLANT_CATALOG.find((p) => p.id === plantTypeId)
+    ?? customPlants.find((p) => p.id === plantTypeId);
   if (!plant) return null;
 
   return (

@@ -361,6 +361,7 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
               dispatch={dispatch}
               onSelect={handleSelect}
               snapToGrid={snapToGrid}
+              customPlants={state.customPlants ?? []}
             />
           ))}
           <TransformerWrapper

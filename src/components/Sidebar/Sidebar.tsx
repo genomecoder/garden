@@ -15,10 +15,10 @@ export function Sidebar({ state, dispatch }: SidebarProps) {
   return (
     <aside className="sidebar">
       {selectedBed && (
-        <BedDimensions bed={selectedBed} dispatch={dispatch} />
+        <BedDimensions bed={selectedBed} dispatch={dispatch} customPlants={state.customPlants ?? []} />
       )}
       <BedPalette />
-      <PlantPalette />
+      <PlantPalette customPlants={state.customPlants ?? []} dispatch={dispatch} />
     </aside>
   );
 }
