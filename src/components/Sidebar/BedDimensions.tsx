@@ -167,18 +167,24 @@ export function BedDimensions({ bed, dispatch }: BedDimensionsProps) {
       )}
       <div className="bed-actions">
         <button
+          className="btn-duplicate-bed"
+          onClick={() => dispatch({ type: 'PASTE_BED', payload: { bed } })}
+        >
+          Duplicate
+        </button>
+        <button
           className={`btn-lock-bed ${bed.locked ? 'locked' : ''}`}
           onClick={() =>
             dispatch({ type: 'LOCK_BED', payload: { id: bed.id, locked: !bed.locked } })
           }
         >
-          {bed.locked ? 'Unlock Bed' : 'Lock Bed'}
+          {bed.locked ? 'Unlock' : 'Lock'}
         </button>
         <button
           className="btn-delete-bed"
           onClick={() => dispatch({ type: 'DELETE_BED', payload: { id: bed.id } })}
         >
-          Delete Bed
+          Delete
         </button>
       </div>
     </div>

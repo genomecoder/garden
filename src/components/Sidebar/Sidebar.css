@@ -221,6 +221,21 @@
   margin-top: 8px;
 }
 
+.btn-duplicate-bed {
+  flex: 1;
+  padding: 6px;
+  border: 1px solid #5a6a7a;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ecf0f1;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.btn-duplicate-bed:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
 .btn-lock-bed {
   flex: 1;
   padding: 6px;
