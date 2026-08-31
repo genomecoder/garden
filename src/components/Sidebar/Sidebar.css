@@ -126,6 +126,58 @@
   border-color: #3498db;
 }
 
+.bed-plants-list {
+  margin-top: 4px;
+}
+
+.bed-plants-list h3 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #95a5a6;
+}
+
+.bed-plant-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.bed-plant-row:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.bed-plant-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-remove-plant {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-remove-plant:hover {
+  background: rgba(231, 76, 60, 0.5);
+  color: white;
+}
+
 .btn-delete-bed {
   width: 100%;
   margin-top: 8px;

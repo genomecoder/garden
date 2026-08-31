@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { GardenBed, GardenAction } from '../../types';
-import { PIXELS_PER_FOOT } from '../../constants';
+import { PIXELS_PER_FOOT, PLANT_CATALOG } from '../../constants';
 
 interface BedDimensionsProps {
   bed: GardenBed;
@@ -95,6 +95,33 @@ export function BedDimensions({ bed, dispatch }: BedDimensionsProps) {
           <span className="dim-unit">ft</span>
         </div>
       </div>
+      {bed.plants.length > 0 && (
+        <div className="bed-plants-list">
+          <h3>Plants ({bed.plants.length})</h3>
+          {bed.plants.map((plant) => {
+            const info = PLANT_CATALOG.find((p) => p.id === plant.plantTypeId);
+            return (
+              <div key={plant.id} className="bed-plant-row">
+                <span className="bed-plant-name">
+                  {info?.icon} {info?.name ?? plant.plantTypeId}
+                </span>
+                <button
+                  className="btn-remove-plant"
+                  onClick={() =>
+                    dispatch({
+                      type: 'REMOVE_PLANT',
+                      payload: { bedId: bed.id, plantId: plant.id },
+                    })
+                  }
+                  title="Remove plant"
+                >
+                  x
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      )}
       <button
         className="btn-delete-bed"
         onClick={() => dispatch({ type: 'DELETE_BED', payload: { id: bed.id } })}
