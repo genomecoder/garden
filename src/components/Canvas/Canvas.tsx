@@ -18,15 +18,15 @@ interface CanvasProps {
   state: GardenState;
   dispatch: React.Dispatch<GardenAction>;
   clipboardRef: React.RefObject<GardenBed | null>;
+  stageRef: React.RefObject<Konva.Stage | null>;
 }
 
 const MIN_SCALE = 0.1;
 const MAX_SCALE = 5;
 const ZOOM_FACTOR = 1.1;
 
-export function Canvas({ state, dispatch, clipboardRef }: CanvasProps) {
+export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const stageRef = useRef<Konva.Stage>(null);
   const [size, setSize] = useState({ width: 800, height: 600 });
   const [contextMenu, setContextMenu] = useState<ContextMenuState | null>(null);
   const [scale, setScale] = useState(1);

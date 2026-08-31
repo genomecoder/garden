@@ -9,9 +9,10 @@ interface ToolbarProps {
   redo: () => void;
   canUndo: boolean;
   canRedo: boolean;
+  onExport: () => void;
 }
 
-export function Toolbar({ state, dispatch, undo, redo, canUndo, canRedo }: ToolbarProps) {
+export function Toolbar({ state, dispatch, undo, redo, canUndo, canRedo, onExport }: ToolbarProps) {
   const handleSave = () => {
     saveGarden(state);
     alert('Garden saved!');
@@ -42,6 +43,7 @@ export function Toolbar({ state, dispatch, undo, redo, canUndo, canRedo }: Toolb
           Redo
         </button>
         <button onClick={handleSave}>Save</button>
+        <button onClick={onExport}>Export PNG</button>
         <button onClick={handleClear} className="btn-danger">
           Clear
         </button>
