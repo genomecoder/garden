@@ -52,6 +52,28 @@
   white-space: nowrap;
 }
 
+.zoom-indicator {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+}
+
+.zoom-indicator button {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.zoom-indicator button:hover {
+  background: #fff;
+}
+
 .context-menu {
   position: absolute;
   background: #fff;
