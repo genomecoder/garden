@@ -8,7 +8,8 @@ A drag-and-drop garden planning web app. Place garden bed shapes on a canvas, dr
 - **Move and resize** — Drag beds around the canvas; click to select and resize with handles
 - **Plant placement** — Drag plants from a catalog of 10 types onto any bed
 - **Dimensions in feet** — Select a bed to edit its width/height in feet via the sidebar
-- **Copy and paste** — Select a bed and use Ctrl+C / Ctrl+V to duplicate it (including plants)
+- **Copy and paste** — Select a bed and use Ctrl+C / Ctrl+V or right-click context menu to duplicate it (including plants)
+- **Right-click context menu** — Right-click a bed for Copy, Paste, and Delete options; right-click empty canvas to paste
 - **Persistence** — Save your layout to localStorage; auto-loads on next visit
 - **Scale grid** — 1 ft grid lines with 5 ft major lines, labels, and a scale indicator
 
