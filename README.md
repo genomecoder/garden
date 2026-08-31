@@ -13,6 +13,7 @@ A drag-and-drop garden planning web app. Place garden bed shapes on a canvas, dr
 - **Right-click context menu** — Right-click a bed for Copy, Paste, and Delete options; right-click empty canvas to paste
 - **Undo / Redo** — Undo and redo changes via toolbar buttons or Ctrl+Z / Ctrl+Y (up to 50 steps)
 - **Persistence** — Save your layout to localStorage; auto-loads on next visit
+- **Zoom and pan** — Scroll to zoom (0.1x–5x), middle-click or Space+drag to pan; click the zoom percentage to reset view
 - **Scale grid** — 1 ft grid lines with 5 ft major lines, labels, and a scale indicator
 
 ## Tech Stack
@@ -58,3 +59,6 @@ src/
 | Ctrl+V | Paste copied bed |
 | Ctrl+Z | Undo |
 | Ctrl+Y / Ctrl+Shift+Z | Redo |
+| Space + drag | Pan canvas |
+| Middle mouse + drag | Pan canvas |
+| Scroll wheel | Zoom in/out |
