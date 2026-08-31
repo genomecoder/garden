@@ -52,7 +52,19 @@ export function BedDimensions({ bed, dispatch }: BedDimensionsProps) {
 
   return (
     <div className="palette-section bed-dimensions">
-      <h3>Bed Dimensions (ft)</h3>
+      <h3>Selected Bed</h3>
+      <div className="dim-row">
+        <label>Label</label>
+        <input
+          className="dim-label-input"
+          type="text"
+          placeholder="Untitled"
+          value={bed.label}
+          onChange={(e) =>
+            dispatch({ type: 'RENAME_BED', payload: { id: bed.id, label: e.target.value } })
+          }
+        />
+      </div>
       <div className="dim-row">
         <label>{isCircle ? 'Diameter X' : 'Width'}</label>
         <div className="dim-input-wrap">

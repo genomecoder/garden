@@ -1,4 +1,4 @@
-import { Rect, Ellipse, Group } from 'react-konva';
+import { Rect, Ellipse, Group, Text } from 'react-konva';
 import Konva from 'konva';
 import type { GardenBed as GardenBedType, GardenAction } from '../../types';
 import { BED_FILL, BED_STROKE, BED_SELECTED_STROKE } from '../../constants';
@@ -61,6 +61,19 @@ export function GardenBedComponent({
           fill={BED_FILL}
           stroke={stroke}
           strokeWidth={strokeWidth}
+        />
+      )}
+      {bed.label && (
+        <Text
+          text={bed.label}
+          x={0}
+          y={-18}
+          width={bed.width}
+          align="center"
+          fontSize={13}
+          fontStyle="bold"
+          fill="#2c3e50"
+          listening={false}
         />
       )}
       {bed.plants.map((plant, i) => {

@@ -109,6 +109,23 @@
   color: #95a5a6;
 }
 
+.dim-label-input {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 6px;
+  border: 1px solid #5a6a7a;
+  border-radius: 4px;
+  background: #2c3e50;
+  color: #ecf0f1;
+  font-size: 13px;
+  margin-left: 8px;
+}
+
+.dim-label-input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
 .btn-delete-bed {
   width: 100%;
   margin-top: 8px;

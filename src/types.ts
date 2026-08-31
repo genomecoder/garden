@@ -3,6 +3,7 @@ export type BedShape = 'rectangle' | 'circle';
 export interface GardenBed {
   id: string;
   shape: BedShape;
+  label: string;
   x: number;
   y: number;
   width: number;
@@ -37,6 +38,7 @@ export type GardenAction =
   | { type: 'ADD_PLANT'; payload: { bedId: string; plantTypeId: string } }
   | { type: 'REMOVE_PLANT'; payload: { bedId: string; plantId: string } }
   | { type: 'SET_NAME'; payload: { name: string } }
+  | { type: 'RENAME_BED'; payload: { id: string; label: string } }
   | { type: 'PASTE_BED'; payload: { bed: GardenBed } }
   | { type: 'LOAD_GARDEN'; payload: GardenState }
   | { type: 'CLEAR_GARDEN' };

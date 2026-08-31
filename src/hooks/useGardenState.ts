@@ -23,6 +23,7 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
           {
             id: uuidv4(),
             shape,
+            label: '',
             x: x - width / 2,
             y: y - height / 2,
             width,
@@ -81,6 +82,15 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
         ),
       };
     }
+    case 'RENAME_BED':
+      return {
+        ...state,
+        beds: state.beds.map((b) =>
+          b.id === action.payload.id
+            ? { ...b, label: action.payload.label }
+            : b
+        ),
+      };
     case 'PASTE_BED': {
       const src = action.payload.bed;
       const newBed = {
