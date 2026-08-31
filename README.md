@@ -16,6 +16,7 @@ A drag-and-drop garden planning web app. Place garden bed shapes on a canvas, dr
 - **Multiple layouts** — Save multiple garden layouts via the Layouts dropdown; load, switch between, or delete saved layouts
 - **Persistence** — Save your layout to localStorage; auto-loads on next visit
 - **Zoom and pan** — Scroll to zoom (0.1x–5x), middle-click or Space+drag to pan; click the zoom percentage to reset view
+- **Snap to grid** — Beds snap to the nearest 1-foot grid line when dragged; toggle via the Snap button (on by default)
 - **Scale grid** — 1 ft grid lines with 5 ft major lines, labels, and a scale indicator
 
 ## Tech Stack
