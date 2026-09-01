@@ -186,6 +186,14 @@
   border-radius: 4px 4px 6px 6px;
 }
 
+.bed-preview.greenhouse {
+  width: 28px;
+  height: 20px;
+  background: rgba(200, 230, 201, 0.6);
+  border: 2px solid #81C784;
+  border-radius: 8px 8px 2px 2px;
+}
+
 .plant-name-text {
   flex: 1;
   min-width: 0;

@@ -520,6 +520,124 @@ export function GardenBedComponent({
           />
         </>
       )}
+      {bed.shape === 'greenhouse' && (() => {
+        const roofH = bed.height * 0.3;
+        const wallH = bed.height - roofH;
+        const paneColor = 'rgba(200, 230, 201, 0.4)';
+        const frameColor = '#81C784';
+        const frameW = 2;
+        const cols = Math.max(2, Math.round(bed.width / 35));
+        const rows = Math.max(1, Math.round(wallH / 35));
+        const paneLines: React.ReactNode[] = [];
+        // Vertical frame lines on walls
+        for (let i = 1; i < cols; i++) {
+          const x = (bed.width / cols) * i;
+          paneLines.push(
+            <Line
+              key={`v-${i}`}
+              points={[x, roofH, x, bed.height]}
+              stroke={frameColor}
+              strokeWidth={frameW}
+              listening={false}
+            />
+          );
+        }
+        // Horizontal frame lines on walls
+        for (let i = 1; i <= rows; i++) {
+          const y = roofH + (wallH / (rows + 1)) * i;
+          paneLines.push(
+            <Line
+              key={`h-${i}`}
+              points={[0, y, bed.width, y]}
+              stroke={frameColor}
+              strokeWidth={frameW}
+              listening={false}
+            />
+          );
+        }
+        return (
+          <>
+            {/* Glass walls */}
+            <Rect
+              y={roofH}
+              width={bed.width}
+              height={wallH}
+              fill={paneColor}
+              stroke={frameColor}
+              strokeWidth={2}
+            />
+            {/* Frame lines */}
+            {paneLines}
+            {/* Arched roof */}
+            <Line
+              points={[
+                0, roofH,
+                bed.width * 0.1, roofH * 0.3,
+                bed.width * 0.3, roofH * 0.05,
+                bed.width * 0.5, 0,
+                bed.width * 0.7, roofH * 0.05,
+                bed.width * 0.9, roofH * 0.3,
+                bed.width, roofH,
+              ]}
+              closed
+              fill="rgba(160, 210, 165, 0.5)"
+              stroke={frameColor}
+              strokeWidth={2}
+            />
+            {/* Roof ridge line */}
+            <Line
+              points={[bed.width * 0.5, 0, bed.width * 0.5, roofH]}
+              stroke={frameColor}
+              strokeWidth={frameW}
+              listening={false}
+            />
+            {/* Roof cross lines */}
+            <Line
+              points={[bed.width * 0.25, roofH * 0.15, bed.width * 0.25, roofH]}
+              stroke={frameColor}
+              strokeWidth={frameW}
+              listening={false}
+            />
+            <Line
+              points={[bed.width * 0.75, roofH * 0.15, bed.width * 0.75, roofH]}
+              stroke={frameColor}
+              strokeWidth={frameW}
+              listening={false}
+            />
+            {/* Door */}
+            <Rect
+              x={bed.width * 0.38}
+              y={bed.height * 0.55}
+              width={bed.width * 0.24}
+              height={bed.height * 0.45}
+              fill="rgba(255,255,255,0.3)"
+              stroke={frameColor}
+              strokeWidth={1.5}
+              cornerRadius={[2, 2, 0, 0]}
+              listening={false}
+            />
+            {/* Door knob */}
+            <Ellipse
+              x={bed.width * 0.57}
+              y={bed.height * 0.78}
+              radiusX={2}
+              radiusY={2}
+              fill={frameColor}
+              listening={false}
+            />
+            {/* Glass highlight */}
+            <Rect
+              x={bed.width * 0.05}
+              y={roofH + wallH * 0.1}
+              width={bed.width * 0.12}
+              height={wallH * 0.35}
+              fill="rgba(255,255,255,0.2)"
+              cornerRadius={2}
+              listening={false}
+            />
+          </>
+        );
+      })()}
       {bed.shape === 'rain-barrel' && (() => {
         const cx = bed.width / 2;
         const bandH = 3;
