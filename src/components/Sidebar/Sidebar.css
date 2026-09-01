@@ -178,6 +178,14 @@
   border-radius: 6px;
 }
 
+.bed-preview.rain-barrel {
+  width: 20px;
+  height: 24px;
+  background: #4A6B8A;
+  border: 2px solid #3A5A78;
+  border-radius: 4px 4px 6px 6px;
+}
+
 .plant-name-text {
   flex: 1;
   min-width: 0;

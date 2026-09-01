@@ -520,6 +520,64 @@ export function GardenBedComponent({
           />
         </>
       )}
+      {bed.shape === 'rain-barrel' && (() => {
+        const cx = bed.width / 2;
+        const bandH = 3;
+        return (
+          <>
+            {/* Main barrel body */}
+            <Rect
+              width={bed.width}
+              height={bed.height}
+              fill={bed.color}
+              stroke={stroke}
+              strokeWidth={strokeWidth}
+              cornerRadius={[4, 4, 6, 6]}
+            />
+            {/* Metal bands */}
+            {[0.2, 0.5, 0.8].map((frac) => (
+              <Rect
+                key={frac}
+                x={0}
+                y={bed.height * frac - bandH / 2}
+                width={bed.width}
+                height={bandH}
+                fill="rgba(180,180,180,0.5)"
+                listening={false}
+              />
+            ))}
+            {/* Lid / top rim */}
+            <Rect
+              x={-2}
+              y={-3}
+              width={bed.width + 4}
+              height={5}
+              fill="#3A5A78"
+              cornerRadius={2}
+              listening={false}
+            />
+            {/* Water highlight */}
+            <Ellipse
+              x={cx}
+              y={bed.height * 0.35}
+              radiusX={bed.width * 0.2}
+              radiusY={bed.height * 0.15}
+              fill="rgba(255,255,255,0.15)"
+              listening={false}
+            />
+            {/* Spigot */}
+            <Rect
+              x={bed.width - 2}
+              y={bed.height * 0.7}
+              width={6}
+              height={4}
+              fill="#888"
+              cornerRadius={1}
+              listening={false}
+            />
+          </>
+        );
+      })()}
       {bed.shape === 'path' && (
         <Rect
           width={bed.width}
