@@ -20,6 +20,7 @@ export interface PlantType {
   name: string;
   color: string;
   icon: string;
+  iconImage?: string;
 }
 
 export interface PlantInstance {

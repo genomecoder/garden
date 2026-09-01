@@ -194,6 +194,44 @@
   border-radius: 8px 8px 2px 2px;
 }
 
+.plant-icon-img-preview {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin: 0 4px;
+}
+
+.add-plant-upload-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-upload-icon {
+  padding: 4px 8px;
+  border: 1px solid #5a6a7a;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #95a5a6;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-upload-icon:hover {
+  border-color: #95a5a6;
+  color: #ecf0f1;
+}
+
+.upload-icon-preview {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border: 1px solid #5a6a7a;
+  border-radius: 4px;
+  background: #2c3e50;
+}
+
 .plant-name-text {
   flex: 1;
   min-width: 0;
