@@ -115,6 +115,25 @@ export function BedDimensions({ bed, dispatch, customPlants }: BedDimensionsProp
           <span className="dim-unit">deg</span>
         </div>
       </div>
+      <div className="dim-row">
+        <label>Spacing</label>
+        <div className="dim-input-wrap">
+          <input
+            type="number"
+            min="0.5"
+            max="10"
+            step="0.5"
+            value={(bed.plantSpacing ?? 1).toFixed(1)}
+            onChange={(e) => {
+              const val = parseFloat(e.target.value);
+              if (!isNaN(val) && val >= 0.5) {
+                dispatch({ type: 'SET_PLANT_SPACING', payload: { id: bed.id, plantSpacing: val } });
+              }
+            }}
+          />
+          <span className="dim-unit">ft</span>
+        </div>
+      </div>
       <div className="dim-row color-row">
         <label>Color</label>
         <div className="color-swatches">

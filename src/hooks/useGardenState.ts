@@ -39,6 +39,7 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
             color: BED_FILL,
             rotation: 0,
             locked: false,
+            plantSpacing: 1,
             x: x - width / 2,
             y: y - height / 2,
             width,
@@ -130,6 +131,15 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
         beds: state.beds.map((b) =>
           b.id === action.payload.id
             ? { ...b, locked: action.payload.locked }
+            : b
+        ),
+      };
+    case 'SET_PLANT_SPACING':
+      return {
+        ...state,
+        beds: state.beds.map((b) =>
+          b.id === action.payload.id
+            ? { ...b, plantSpacing: action.payload.plantSpacing }
             : b
         ),
       };

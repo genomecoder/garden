@@ -1,4 +1,5 @@
 import type { GardenBed } from '../types';
+import { PIXELS_PER_FOOT } from '../constants';
 
 export function isPointInRect(
   px: number,
@@ -54,22 +55,22 @@ export function computePlantGrid(
   if (plantCount === 0) return [];
 
   const padding = 12;
-  const plantSize = 24;
+  const spacingPx = (bed.plantSpacing ?? 1) * PIXELS_PER_FOOT;
   const innerW = bed.width - padding * 2;
   const innerH = bed.height - padding * 2;
 
-  const cols = Math.max(1, Math.floor(innerW / (plantSize + 4)));
+  const cols = Math.max(1, Math.floor(innerW / spacingPx));
   const rows = Math.max(1, Math.ceil(plantCount / cols));
 
   const positions: { x: number; y: number }[] = [];
   for (let i = 0; i < plantCount; i++) {
     const col = i % cols;
     const row = Math.floor(i / cols);
-    const spacingX = cols > 1 ? innerW / cols : 0;
-    const spacingY = rows > 1 ? innerH / rows : 0;
+    const cellW = cols > 1 ? innerW / cols : innerW;
+    const cellH = rows > 1 ? innerH / rows : innerH;
     positions.push({
-      x: padding + spacingX * (col + 0.5),
-      y: padding + spacingY * (row + 0.5),
+      x: padding + cellW * (col + 0.5),
+      y: padding + cellH * (row + 0.5),
     });
   }
   return positions;
