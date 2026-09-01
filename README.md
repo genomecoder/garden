@@ -12,6 +12,7 @@ A drag-and-drop garden planning web app. Place garden bed shapes on a canvas, dr
 - **Bed colors** — Choose from 10 preset colors or pick a custom color for each bed via the sidebar
 - **Bed rotation** — Rotate beds by dragging the transformer handle on the canvas or entering a degree value in the sidebar
 - **Lock beds** — Lock a bed in place via the sidebar to prevent moving, resizing, rotating, or deleting it
+- **Plant count badge** — Each bed displays a plant count badge on the canvas when it contains plants
 - **Plant spacing** — Set the spacing (in feet) between plants within each bed via the sidebar
 - **Dimensions in feet** — Select a bed to edit its width/height in feet via the sidebar
 - **Duplicate bed** — Duplicate the selected bed (including plants) via the sidebar button, Ctrl+C / Ctrl+V, or right-click context menu
