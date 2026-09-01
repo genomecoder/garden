@@ -4,7 +4,7 @@ A drag-and-drop garden planning web app. Place garden bed shapes on a canvas, dr
 
 ## Features
 
-- **Multiple shape types** — Rectangle, circle, triangle, L-shape, raised bed plus shed, fence, path/walkway, pond/fountain, and compost bin
+- **Multiple shape types** — Rectangle, circle, triangle, L-shape, raised bed plus shed (with roof, door, and windows), fence, path/walkway, pond/fountain, and compost bin
 - **Drag-and-drop beds** — Drag any bed or structure shape from the sidebar onto the canvas
 - **Move and resize** — Drag beds around the canvas; click to select and resize with handles
 - **Plant placement** — Drag plants from the catalog onto any bed; remove individual plants from the sidebar
