@@ -105,6 +105,14 @@
   flex-shrink: 0;
 }
 
+.bed-preview.path {
+  width: 32px;
+  height: 12px;
+  background: #C8B99A;
+  border: 1px solid #A09070;
+  border-radius: 6px;
+}
+
 .plant-name-text {
   flex: 1;
   min-width: 0;

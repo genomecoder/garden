@@ -60,6 +60,7 @@ export function BedDimensions({ bed, dispatch, customPlants }: BedDimensionsProp
     'l-shape': 'L-Shape Bed',
     shed: 'Shed',
     fence: 'Fence',
+    path: 'Path / Walkway',
   };
 
   return (

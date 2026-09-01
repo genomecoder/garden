@@ -20,8 +20,11 @@ export const DEFAULT_SHED_WIDTH = 100;
 export const DEFAULT_SHED_HEIGHT = 80;
 export const DEFAULT_FENCE_WIDTH = 200;
 export const DEFAULT_FENCE_HEIGHT = 10;
+export const DEFAULT_PATH_WIDTH = 200;
+export const DEFAULT_PATH_HEIGHT = 40;
 export const SHED_FILL = '#8B7355';
 export const FENCE_FILL = '#A0522D';
+export const PATH_FILL = '#C8B99A';
 
 export const BED_FILL = '#8B6914';
 export const BED_STROKE = '#5C4A0E';

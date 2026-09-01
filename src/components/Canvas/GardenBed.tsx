@@ -140,6 +140,16 @@ export function GardenBedComponent({
           dash={[8, 4]}
         />
       )}
+      {bed.shape === 'path' && (
+        <Rect
+          width={bed.width}
+          height={bed.height}
+          fill={bed.color}
+          stroke={stroke}
+          strokeWidth={strokeWidth}
+          cornerRadius={bed.height / 2}
+        />
+      )}
       {bed.label && (
         <Text
           text={bed.label}
