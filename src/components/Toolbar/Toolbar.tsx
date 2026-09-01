@@ -156,6 +156,9 @@ export function Toolbar({ state, dispatch, undo, redo, canUndo, canRedo, onExpor
             </div>
           )}
         </div>
+        <button onClick={() => dispatch({ type: 'ADD_ANNOTATION', payload: { x: 100, y: 100 } })}>
+          Add Note
+        </button>
         <button onClick={onExport}>Export PNG</button>
         <button onClick={handleClear} className="btn-danger">
           Clear

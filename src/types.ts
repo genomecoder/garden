@@ -27,10 +27,20 @@ export interface PlantInstance {
   plantTypeId: string;
 }
 
+export interface Annotation {
+  id: string;
+  text: string;
+  x: number;
+  y: number;
+  color: string;
+  fontSize: number;
+}
+
 export interface GardenState {
   name: string;
   beds: GardenBed[];
   customPlants: PlantType[];
+  annotations: Annotation[];
   selectedBedId: string | null;
 }
 
@@ -51,5 +61,10 @@ export type GardenAction =
   | { type: 'PASTE_BED'; payload: { bed: GardenBed } }
   | { type: 'ADD_PLANT_TYPE'; payload: PlantType }
   | { type: 'REMOVE_PLANT_TYPE'; payload: { id: string } }
+  | { type: 'ADD_ANNOTATION'; payload: { x: number; y: number } }
+  | { type: 'MOVE_ANNOTATION'; payload: { id: string; x: number; y: number } }
+  | { type: 'EDIT_ANNOTATION'; payload: { id: string; text: string } }
+  | { type: 'UPDATE_ANNOTATION_STYLE'; payload: { id: string; color?: string; fontSize?: number } }
+  | { type: 'DELETE_ANNOTATION'; payload: { id: string } }
   | { type: 'LOAD_GARDEN'; payload: GardenState }
   | { type: 'CLEAR_GARDEN' };

@@ -6,6 +6,7 @@ import { PIXELS_PER_FOOT } from '../../constants';
 import { findBedAtPoint } from '../../utils/geometry';
 import { GardenBedComponent } from './GardenBed';
 import { TransformerWrapper } from './TransformerWrapper';
+import { AnnotationNode } from './AnnotationNode';
 import './Canvas.css';
 
 interface ContextMenuState {
@@ -370,6 +371,13 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
             stageRef={stageRef}
             onTransformEnd={handleTransformEnd}
           />
+          {(state.annotations ?? []).map((annotation) => (
+            <AnnotationNode
+              key={annotation.id}
+              annotation={annotation}
+              dispatch={dispatch}
+            />
+          ))}
         </Layer>
       </Stage>
       <div className="scale-indicator">

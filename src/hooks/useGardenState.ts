@@ -10,6 +10,7 @@ const initialState: GardenState = {
   name: 'My Garden',
   beds: [],
   customPlants: [],
+  annotations: [],
   selectedBedId: null,
 };
 
@@ -171,8 +172,59 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
         ...state,
         customPlants: state.customPlants.filter((p) => p.id !== action.payload.id),
       };
+    case 'ADD_ANNOTATION':
+      return {
+        ...state,
+        annotations: [
+          ...state.annotations,
+          {
+            id: uuidv4(),
+            text: 'Note',
+            x: action.payload.x,
+            y: action.payload.y,
+            color: '#2c3e50',
+            fontSize: 14,
+          },
+        ],
+      };
+    case 'MOVE_ANNOTATION':
+      return {
+        ...state,
+        annotations: state.annotations.map((a) =>
+          a.id === action.payload.id
+            ? { ...a, x: action.payload.x, y: action.payload.y }
+            : a
+        ),
+      };
+    case 'EDIT_ANNOTATION':
+      return {
+        ...state,
+        annotations: state.annotations.map((a) =>
+          a.id === action.payload.id
+            ? { ...a, text: action.payload.text }
+            : a
+        ),
+      };
+    case 'UPDATE_ANNOTATION_STYLE':
+      return {
+        ...state,
+        annotations: state.annotations.map((a) =>
+          a.id === action.payload.id
+            ? {
+                ...a,
+                ...(action.payload.color !== undefined && { color: action.payload.color }),
+                ...(action.payload.fontSize !== undefined && { fontSize: action.payload.fontSize }),
+              }
+            : a
+        ),
+      };
+    case 'DELETE_ANNOTATION':
+      return {
+        ...state,
+        annotations: state.annotations.filter((a) => a.id !== action.payload.id),
+      };
     case 'LOAD_GARDEN':
-      return { ...action.payload, customPlants: action.payload.customPlants ?? [], selectedBedId: null };
+      return { ...action.payload, customPlants: action.payload.customPlants ?? [], annotations: action.payload.annotations ?? [], selectedBedId: null };
     case 'CLEAR_GARDEN':
       return { ...initialState, name: state.name, customPlants: state.customPlants };
     default:
