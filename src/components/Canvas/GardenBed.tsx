@@ -110,6 +110,30 @@ export function GardenBedComponent({
           />
         );
       })}
+      {isSelected && (
+        <>
+          <Text
+            text={`${(bed.width / PIXELS_PER_FOOT).toFixed(1)} ft`}
+            x={0}
+            y={bed.height + 4}
+            width={bed.width}
+            align="center"
+            fontSize={11}
+            fill="#3498db"
+            fontStyle="bold"
+            listening={false}
+          />
+          <Text
+            text={`${(bed.height / PIXELS_PER_FOOT).toFixed(1)} ft`}
+            x={bed.width + 4}
+            y={bed.height / 2 - 6}
+            fontSize={11}
+            fill="#3498db"
+            fontStyle="bold"
+            listening={false}
+          />
+        </>
+      )}
       {bed.plants.length > 0 && (
         <Label x={bed.width - 4} y={bed.height - 4} listening={false}>
           <Tag
