@@ -82,6 +82,7 @@ export function findBedAtPoint(
         break;
       case 'circle':
       case 'pond':
+      case 'tree':
         if (
           isPointInCircle(
             px, py,

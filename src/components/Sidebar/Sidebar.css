@@ -105,6 +105,14 @@
   flex-shrink: 0;
 }
 
+.bed-preview.tree {
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(ellipse at 50% 45%, #3CB371, #2D8B46);
+  border: 2px solid #1E6B34;
+  border-radius: 50%;
+}
+
 .bed-preview.compost {
   width: 22px;
   height: 22px;

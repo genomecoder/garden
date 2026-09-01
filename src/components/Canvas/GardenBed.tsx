@@ -244,6 +244,56 @@ export function GardenBedComponent({
           dash={[8, 4]}
         />
       )}
+      {bed.shape === 'tree' && (() => {
+        const cx = bed.width / 2;
+        const cy = bed.height / 2;
+        const canopyRx = bed.width * 0.45;
+        const canopyRy = bed.height * 0.45;
+        const trunkW = bed.width * 0.12;
+        const trunkH = bed.height * 0.3;
+        return (
+          <>
+            {/* Trunk */}
+            <Rect
+              x={cx - trunkW / 2}
+              y={cy}
+              width={trunkW}
+              height={trunkH}
+              fill="#6B4226"
+              cornerRadius={2}
+              listening={false}
+            />
+            {/* Shadow under canopy */}
+            <Ellipse
+              x={cx}
+              y={cy + bed.height * 0.02}
+              radiusX={canopyRx}
+              radiusY={canopyRy}
+              fill="rgba(0,0,0,0.1)"
+              listening={false}
+            />
+            {/* Main canopy */}
+            <Ellipse
+              x={cx}
+              y={cy - bed.height * 0.05}
+              radiusX={canopyRx}
+              radiusY={canopyRy}
+              fill={bed.color}
+              stroke={stroke}
+              strokeWidth={strokeWidth}
+            />
+            {/* Highlight */}
+            <Ellipse
+              x={cx - canopyRx * 0.2}
+              y={cy - canopyRy * 0.3}
+              radiusX={canopyRx * 0.35}
+              radiusY={canopyRy * 0.3}
+              fill="rgba(255,255,255,0.15)"
+              listening={false}
+            />
+          </>
+        );
+      })()}
       {bed.shape === 'compost' && (
         <>
           <Rect
