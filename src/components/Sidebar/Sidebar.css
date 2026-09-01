@@ -105,6 +105,27 @@
   flex-shrink: 0;
 }
 
+.bed-preview.trellis {
+  width: 22px;
+  height: 26px;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 4px,
+    #A08060 4px,
+    #A08060 5px
+  ),
+  repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 4px,
+    #A08060 4px,
+    #A08060 5px
+  );
+  border: 2px solid #7A6040;
+  border-radius: 2px;
+}
+
 .bed-preview.bench {
   width: 28px;
   height: 14px;

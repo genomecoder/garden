@@ -244,6 +244,59 @@ export function GardenBedComponent({
           dash={[8, 4]}
         />
       )}
+      {bed.shape === 'trellis' && (() => {
+        const slatColor = bed.color;
+        const slatW = 2;
+        const spacing = Math.max(10, bed.width * 0.15);
+        const vLines: React.ReactNode[] = [];
+        const hLines: React.ReactNode[] = [];
+        for (let x = spacing; x < bed.width; x += spacing) {
+          vLines.push(
+            <Line
+              key={`v-${x}`}
+              points={[x, 0, x, bed.height]}
+              stroke={slatColor}
+              strokeWidth={slatW}
+              listening={false}
+            />
+          );
+        }
+        for (let y = spacing; y < bed.height; y += spacing) {
+          hLines.push(
+            <Line
+              key={`h-${y}`}
+              points={[0, y, bed.width, y]}
+              stroke={slatColor}
+              strokeWidth={slatW}
+              listening={false}
+            />
+          );
+        }
+        return (
+          <>
+            {/* Frame */}
+            <Rect
+              width={bed.width}
+              height={bed.height}
+              stroke={stroke}
+              strokeWidth={strokeWidth}
+              fill="rgba(255,255,255,0.05)"
+              cornerRadius={2}
+            />
+            {/* Lattice */}
+            {vLines}
+            {hLines}
+            {/* Top cap */}
+            <Rect
+              width={bed.width}
+              height={4}
+              fill={slatColor}
+              cornerRadius={[2, 2, 0, 0]}
+              listening={false}
+            />
+          </>
+        );
+      })()}
       {bed.shape === 'bench' && (() => {
         const legW = bed.width * 0.06;
         const legH = bed.height * 0.35;
