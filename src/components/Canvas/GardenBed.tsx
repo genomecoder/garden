@@ -110,25 +110,129 @@ export function GardenBedComponent({
           strokeWidth={strokeWidth}
         />
       )}
-      {bed.shape === 'shed' && (
-        <>
-          <Rect
-            y={bed.height * 0.3}
-            width={bed.width}
-            height={bed.height * 0.7}
-            fill={bed.color}
-            stroke={stroke}
-            strokeWidth={strokeWidth}
-          />
-          <Line
-            points={[0, bed.height * 0.3, bed.width / 2, 0, bed.width, bed.height * 0.3]}
-            closed
-            fill={bed.color}
-            stroke={stroke}
-            strokeWidth={strokeWidth}
-          />
-        </>
-      )}
+      {bed.shape === 'shed' && (() => {
+        const roofTop = bed.height * 0.2;
+        const roofBase = bed.height * 0.35;
+        const wallTop = roofBase;
+        const wallH = bed.height - wallTop;
+        const doorW = bed.width * 0.25;
+        const doorH = wallH * 0.7;
+        const doorX = (bed.width - doorW) / 2;
+        const doorY = bed.height - doorH;
+        const winSize = Math.min(bed.width * 0.15, wallH * 0.3);
+        const winY = wallTop + wallH * 0.15;
+        return (
+          <>
+            {/* Wall */}
+            <Rect
+              y={wallTop}
+              width={bed.width}
+              height={wallH}
+              fill={bed.color}
+              stroke={stroke}
+              strokeWidth={strokeWidth}
+            />
+            {/* Horizontal plank lines */}
+            {[0.25, 0.5, 0.75].map((frac) => (
+              <Line
+                key={frac}
+                points={[0, wallTop + wallH * frac, bed.width, wallTop + wallH * frac]}
+                stroke="rgba(0,0,0,0.12)"
+                strokeWidth={1}
+                listening={false}
+              />
+            ))}
+            {/* Roof */}
+            <Line
+              points={[
+                -bed.width * 0.05, roofBase,
+                bed.width / 2, roofTop,
+                bed.width * 1.05, roofBase,
+              ]}
+              closed
+              fill="#6B4226"
+              stroke={stroke}
+              strokeWidth={strokeWidth}
+            />
+            {/* Roof ridge line */}
+            <Line
+              points={[bed.width / 2, roofTop, bed.width / 2, roofBase]}
+              stroke="rgba(0,0,0,0.1)"
+              strokeWidth={1}
+              listening={false}
+            />
+            {/* Door */}
+            <Rect
+              x={doorX}
+              y={doorY}
+              width={doorW}
+              height={doorH}
+              fill="#3E2C1E"
+              stroke="rgba(0,0,0,0.3)"
+              strokeWidth={1}
+              cornerRadius={[3, 3, 0, 0]}
+              listening={false}
+            />
+            {/* Door knob */}
+            <Ellipse
+              x={doorX + doorW * 0.75}
+              y={doorY + doorH * 0.5}
+              radiusX={2}
+              radiusY={2}
+              fill="#C0A060"
+              listening={false}
+            />
+            {/* Window left */}
+            <Rect
+              x={bed.width * 0.08}
+              y={winY}
+              width={winSize}
+              height={winSize}
+              fill="#A8D8EA"
+              stroke="rgba(0,0,0,0.3)"
+              strokeWidth={1}
+              listening={false}
+            />
+            {/* Window cross */}
+            <Line
+              points={[bed.width * 0.08 + winSize / 2, winY, bed.width * 0.08 + winSize / 2, winY + winSize]}
+              stroke="rgba(0,0,0,0.2)"
+              strokeWidth={1}
+              listening={false}
+            />
+            <Line
+              points={[bed.width * 0.08, winY + winSize / 2, bed.width * 0.08 + winSize, winY + winSize / 2]}
+              stroke="rgba(0,0,0,0.2)"
+              strokeWidth={1}
+              listening={false}
+            />
+            {/* Window right */}
+            <Rect
+              x={bed.width - bed.width * 0.08 - winSize}
+              y={winY}
+              width={winSize}
+              height={winSize}
+              fill="#A8D8EA"
+              stroke="rgba(0,0,0,0.3)"
+              strokeWidth={1}
+              listening={false}
+            />
+            {/* Window cross */}
+            <Line
+              points={[bed.width - bed.width * 0.08 - winSize / 2, winY, bed.width - bed.width * 0.08 - winSize / 2, winY + winSize]}
+              stroke="rgba(0,0,0,0.2)"
+              strokeWidth={1}
+              listening={false}
+            />
+            <Line
+              points={[bed.width - bed.width * 0.08 - winSize, winY + winSize / 2, bed.width - bed.width * 0.08, winY + winSize / 2]}
+              stroke="rgba(0,0,0,0.2)"
+              strokeWidth={1}
+              listening={false}
+            />
+          </>
+        );
+      })()}
       {bed.shape === 'fence' && (
         <Rect
           width={bed.width}
