@@ -75,6 +75,7 @@ export function findBedAtPoint(
       case 'fence':
       case 'path':
       case 'raised-bed':
+      case 'compost':
         if (isPointInRect(px, py, bed.x, bed.y, bed.width, bed.height)) {
           return bed;
         }

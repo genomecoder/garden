@@ -1,7 +1,7 @@
 import { useReducer, useEffect, useRef, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import type { GardenState, GardenAction, GardenBed } from '../types';
-import { DEFAULT_BED_WIDTH, DEFAULT_BED_HEIGHT, DEFAULT_BED_RADIUS, DEFAULT_SHED_WIDTH, DEFAULT_SHED_HEIGHT, DEFAULT_FENCE_WIDTH, DEFAULT_FENCE_HEIGHT, DEFAULT_PATH_WIDTH, DEFAULT_PATH_HEIGHT, DEFAULT_POND_WIDTH, DEFAULT_POND_HEIGHT, DEFAULT_RAISED_BED_WIDTH, DEFAULT_RAISED_BED_HEIGHT, BED_FILL, SHED_FILL, FENCE_FILL, PATH_FILL, POND_FILL, RAISED_BED_FILL } from '../constants';
+import { DEFAULT_BED_WIDTH, DEFAULT_BED_HEIGHT, DEFAULT_BED_RADIUS, DEFAULT_SHED_WIDTH, DEFAULT_SHED_HEIGHT, DEFAULT_FENCE_WIDTH, DEFAULT_FENCE_HEIGHT, DEFAULT_PATH_WIDTH, DEFAULT_PATH_HEIGHT, DEFAULT_POND_WIDTH, DEFAULT_POND_HEIGHT, DEFAULT_RAISED_BED_WIDTH, DEFAULT_RAISED_BED_HEIGHT, DEFAULT_COMPOST_WIDTH, DEFAULT_COMPOST_HEIGHT, BED_FILL, SHED_FILL, FENCE_FILL, PATH_FILL, POND_FILL, RAISED_BED_FILL, COMPOST_FILL } from '../constants';
 import { loadGarden } from '../utils/storage';
 
 const MAX_HISTORY = 50;
@@ -60,6 +60,11 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
           width = DEFAULT_RAISED_BED_WIDTH;
           height = DEFAULT_RAISED_BED_HEIGHT;
           color = RAISED_BED_FILL;
+          break;
+        case 'compost':
+          width = DEFAULT_COMPOST_WIDTH;
+          height = DEFAULT_COMPOST_HEIGHT;
+          color = COMPOST_FILL;
           break;
         default:
           width = DEFAULT_BED_WIDTH;

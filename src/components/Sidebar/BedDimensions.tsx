@@ -63,6 +63,7 @@ export function BedDimensions({ bed, dispatch, customPlants }: BedDimensionsProp
     path: 'Path / Walkway',
     pond: 'Pond / Fountain',
     'raised-bed': 'Raised Bed',
+    compost: 'Compost Bin',
   };
 
   return (
