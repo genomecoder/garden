@@ -14,7 +14,7 @@ A drag-and-drop garden planning web app. Place garden bed shapes on a canvas, dr
 - **Lock beds** — Lock a bed in place via the sidebar to prevent moving, resizing, rotating, or deleting it
 - **Plant count badge** — Each bed displays a plant count badge on the canvas when it contains plants
 - **Plant spacing** — Set the spacing (in feet) between plants within each bed via the sidebar
-- **Dimensions in feet** — Select a bed to edit its width/height in feet via the sidebar
+- **Dimensions in feet** — Select a bed to see its dimensions on the canvas and edit width/height in feet via the sidebar
 - **Duplicate bed** — Duplicate the selected bed (including plants) via the sidebar button, Ctrl+C / Ctrl+V, or right-click context menu
 - **Right-click context menu** — Right-click a bed for Copy, Paste, and Delete options; right-click empty canvas to paste
 - **Undo / Redo** — Undo and redo changes via toolbar buttons or Ctrl+Z / Ctrl+Y (up to 50 steps)
