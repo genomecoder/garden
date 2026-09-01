@@ -61,6 +61,7 @@ export function BedDimensions({ bed, dispatch, customPlants }: BedDimensionsProp
     shed: 'Shed',
     fence: 'Fence',
     path: 'Path / Walkway',
+    pond: 'Pond / Fountain',
   };
 
   return (
