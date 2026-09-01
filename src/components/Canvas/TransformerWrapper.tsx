@@ -60,7 +60,7 @@ export function TransformerWrapper({
         // Find the actual shape inside the group
         const group = node as Konva.Group;
         const children = group.getChildren();
-        const shape = children[0]; // First child is Rect or Ellipse
+        const shape = children[0]; // First child is the main shape
 
         let newWidth: number;
         let newHeight: number;
@@ -68,10 +68,14 @@ export function TransformerWrapper({
         if (shape instanceof Konva.Rect) {
           newWidth = Math.max(40, shape.width() * scaleX);
           newHeight = Math.max(40, shape.height() * scaleY);
+        } else if (shape instanceof Konva.Ellipse) {
+          newWidth = Math.max(40, shape.radiusX() * 2 * scaleX);
+          newHeight = Math.max(40, shape.radiusY() * 2 * scaleY);
         } else {
-          // Ellipse - radiusX/Y are half dimensions
-          newWidth = Math.max(40, (shape as Konva.Ellipse).radiusX() * 2 * scaleX);
-          newHeight = Math.max(40, (shape as Konva.Ellipse).radiusY() * 2 * scaleY);
+          // Line (polygon) or other — use the group's client rect
+          const rect = group.getClientRect({ skipTransform: true });
+          newWidth = Math.max(40, rect.width * scaleX);
+          newHeight = Math.max(40, rect.height * scaleY);
         }
 
         const rotation = node.rotation();

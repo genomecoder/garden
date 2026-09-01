@@ -1,7 +1,7 @@
 import { useReducer, useEffect, useRef, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import type { GardenState, GardenAction, GardenBed } from '../types';
-import { DEFAULT_BED_WIDTH, DEFAULT_BED_HEIGHT, DEFAULT_BED_RADIUS, BED_FILL } from '../constants';
+import { DEFAULT_BED_WIDTH, DEFAULT_BED_HEIGHT, DEFAULT_BED_RADIUS, DEFAULT_SHED_WIDTH, DEFAULT_SHED_HEIGHT, DEFAULT_FENCE_WIDTH, DEFAULT_FENCE_HEIGHT, BED_FILL, SHED_FILL, FENCE_FILL } from '../constants';
 import { loadGarden } from '../utils/storage';
 
 const MAX_HISTORY = 50;
@@ -27,8 +27,31 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
   switch (action.type) {
     case 'ADD_BED': {
       const { shape, x, y } = action.payload;
-      const width = shape === 'circle' ? DEFAULT_BED_RADIUS * 2 : DEFAULT_BED_WIDTH;
-      const height = shape === 'circle' ? DEFAULT_BED_RADIUS * 2 : DEFAULT_BED_HEIGHT;
+      let width: number;
+      let height: number;
+      let color: string;
+      switch (shape) {
+        case 'circle':
+          width = DEFAULT_BED_RADIUS * 2;
+          height = DEFAULT_BED_RADIUS * 2;
+          color = BED_FILL;
+          break;
+        case 'shed':
+          width = DEFAULT_SHED_WIDTH;
+          height = DEFAULT_SHED_HEIGHT;
+          color = SHED_FILL;
+          break;
+        case 'fence':
+          width = DEFAULT_FENCE_WIDTH;
+          height = DEFAULT_FENCE_HEIGHT;
+          color = FENCE_FILL;
+          break;
+        default:
+          width = DEFAULT_BED_WIDTH;
+          height = DEFAULT_BED_HEIGHT;
+          color = BED_FILL;
+          break;
+      }
       return {
         ...state,
         beds: [
@@ -37,7 +60,7 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
             id: uuidv4(),
             shape,
             label: '',
-            color: BED_FILL,
+            color,
             rotation: 0,
             locked: false,
             plantSpacing: 1,

@@ -3,6 +3,10 @@ import type { BedShape } from '../../types';
 const BED_OPTIONS: { shape: BedShape; label: string }[] = [
   { shape: 'rectangle', label: 'Rectangle Bed' },
   { shape: 'circle', label: 'Circle Bed' },
+  { shape: 'triangle', label: 'Triangle Bed' },
+  { shape: 'l-shape', label: 'L-Shape Bed' },
+  { shape: 'shed', label: 'Shed' },
+  { shape: 'fence', label: 'Fence' },
 ];
 
 export function BedPalette() {

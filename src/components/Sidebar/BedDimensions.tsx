@@ -50,10 +50,21 @@ export function BedDimensions({ bed, dispatch, customPlants }: BedDimensionsProp
   };
 
   const isCircle = bed.shape === 'circle';
+  const isShed = bed.shape === 'shed';
+  const widthLabel = isCircle ? 'Diameter X' : isShed ? 'Width' : 'Width';
+  const heightLabel = isCircle ? 'Diameter Y' : isShed ? 'Depth' : 'Height';
+  const shapeLabels: Record<string, string> = {
+    rectangle: 'Rectangle Bed',
+    circle: 'Circle Bed',
+    triangle: 'Triangle Bed',
+    'l-shape': 'L-Shape Bed',
+    shed: 'Shed',
+    fence: 'Fence',
+  };
 
   return (
     <div className="palette-section bed-dimensions">
-      <h3>Selected Bed</h3>
+      <h3>{shapeLabels[bed.shape] ?? 'Selected Bed'}</h3>
       <div className="dim-row">
         <label>Label</label>
         <input
@@ -67,7 +78,7 @@ export function BedDimensions({ bed, dispatch, customPlants }: BedDimensionsProp
         />
       </div>
       <div className="dim-row">
-        <label>{isCircle ? 'Diameter X' : 'Width'}</label>
+        <label>{widthLabel}</label>
         <div className="dim-input-wrap">
           <input
             type="number"
@@ -82,7 +93,7 @@ export function BedDimensions({ bed, dispatch, customPlants }: BedDimensionsProp
         </div>
       </div>
       <div className="dim-row">
-        <label>{isCircle ? 'Diameter Y' : 'Height'}</label>
+        <label>{heightLabel}</label>
         <div className="dim-input-wrap">
           <input
             type="number"

@@ -1,4 +1,4 @@
-import { Rect, Ellipse, Group, Text, Label, Tag } from 'react-konva';
+import { Rect, Ellipse, Group, Text, Label, Tag, Line } from 'react-konva';
 import Konva from 'konva';
 import type { GardenBed as GardenBedType, GardenAction, PlantType } from '../../types';
 import { BED_STROKE, BED_SELECTED_STROKE, PIXELS_PER_FOOT } from '../../constants';
@@ -64,7 +64,7 @@ export function GardenBedComponent({
       onTap={handleClick}
       name={`bed-${bed.id}`}
     >
-      {bed.shape === 'rectangle' ? (
+      {bed.shape === 'rectangle' && (
         <Rect
           width={bed.width}
           height={bed.height}
@@ -73,7 +73,8 @@ export function GardenBedComponent({
           strokeWidth={strokeWidth}
           cornerRadius={4}
         />
-      ) : (
+      )}
+      {bed.shape === 'circle' && (
         <Ellipse
           x={bed.width / 2}
           y={bed.height / 2}
@@ -82,6 +83,61 @@ export function GardenBedComponent({
           fill={bed.color}
           stroke={stroke}
           strokeWidth={strokeWidth}
+        />
+      )}
+      {bed.shape === 'triangle' && (
+        <Line
+          points={[bed.width / 2, 0, bed.width, bed.height, 0, bed.height]}
+          closed
+          fill={bed.color}
+          stroke={stroke}
+          strokeWidth={strokeWidth}
+        />
+      )}
+      {bed.shape === 'l-shape' && (
+        <Line
+          points={[
+            0, 0,
+            bed.width * 0.6, 0,
+            bed.width * 0.6, bed.height * 0.4,
+            bed.width, bed.height * 0.4,
+            bed.width, bed.height,
+            0, bed.height,
+          ]}
+          closed
+          fill={bed.color}
+          stroke={stroke}
+          strokeWidth={strokeWidth}
+        />
+      )}
+      {bed.shape === 'shed' && (
+        <>
+          <Rect
+            y={bed.height * 0.3}
+            width={bed.width}
+            height={bed.height * 0.7}
+            fill={bed.color}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+          />
+          <Line
+            points={[0, bed.height * 0.3, bed.width / 2, 0, bed.width, bed.height * 0.3]}
+            closed
+            fill={bed.color}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+          />
+        </>
+      )}
+      {bed.shape === 'fence' && (
+        <Rect
+          width={bed.width}
+          height={bed.height}
+          fill={bed.color}
+          opacity={0.5}
+          stroke={stroke}
+          strokeWidth={strokeWidth}
+          dash={[8, 4]}
         />
       )}
       {bed.label && (

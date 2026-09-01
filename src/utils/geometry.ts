@@ -25,6 +25,42 @@ export function isPointInCircle(
   return dx * dx + dy * dy <= 1;
 }
 
+export function isPointInPolygon(
+  px: number,
+  py: number,
+  vertices: { x: number; y: number }[]
+): boolean {
+  let inside = false;
+  for (let i = 0, j = vertices.length - 1; i < vertices.length; j = i++) {
+    const xi = vertices[i].x, yi = vertices[i].y;
+    const xj = vertices[j].x, yj = vertices[j].y;
+    const intersect =
+      yi > py !== yj > py &&
+      px < ((xj - xi) * (py - yi)) / (yj - yi) + xi;
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+
+function getTriangleVertices(bed: GardenBed): { x: number; y: number }[] {
+  return [
+    { x: bed.x + bed.width / 2, y: bed.y },
+    { x: bed.x + bed.width, y: bed.y + bed.height },
+    { x: bed.x, y: bed.y + bed.height },
+  ];
+}
+
+function getLShapeVertices(bed: GardenBed): { x: number; y: number }[] {
+  return [
+    { x: bed.x, y: bed.y },
+    { x: bed.x + bed.width * 0.6, y: bed.y },
+    { x: bed.x + bed.width * 0.6, y: bed.y + bed.height * 0.4 },
+    { x: bed.x + bed.width, y: bed.y + bed.height * 0.4 },
+    { x: bed.x + bed.width, y: bed.y + bed.height },
+    { x: bed.x, y: bed.y + bed.height },
+  ];
+}
+
 export function findBedAtPoint(
   beds: GardenBed[],
   px: number,
@@ -33,16 +69,35 @@ export function findBedAtPoint(
   // Iterate in reverse so topmost (last added) beds are found first
   for (let i = beds.length - 1; i >= 0; i--) {
     const bed = beds[i];
-    if (bed.shape === 'rectangle') {
-      if (isPointInRect(px, py, bed.x, bed.y, bed.width, bed.height)) {
-        return bed;
-      }
-    } else {
-      const cx = bed.x + bed.width / 2;
-      const cy = bed.y + bed.height / 2;
-      if (isPointInCircle(px, py, cx, cy, bed.width / 2, bed.height / 2)) {
-        return bed;
-      }
+    switch (bed.shape) {
+      case 'rectangle':
+      case 'shed':
+      case 'fence':
+        if (isPointInRect(px, py, bed.x, bed.y, bed.width, bed.height)) {
+          return bed;
+        }
+        break;
+      case 'circle':
+        if (
+          isPointInCircle(
+            px, py,
+            bed.x + bed.width / 2, bed.y + bed.height / 2,
+            bed.width / 2, bed.height / 2
+          )
+        ) {
+          return bed;
+        }
+        break;
+      case 'triangle':
+        if (isPointInPolygon(px, py, getTriangleVertices(bed))) {
+          return bed;
+        }
+        break;
+      case 'l-shape':
+        if (isPointInPolygon(px, py, getLShapeVertices(bed))) {
+          return bed;
+        }
+        break;
     }
   }
   return undefined;

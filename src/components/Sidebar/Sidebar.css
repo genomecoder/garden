@@ -57,6 +57,47 @@
   border-radius: 3px;
 }
 
+.bed-preview.triangle {
+  width: 0;
+  height: 0;
+  background: none;
+  border: none;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 22px solid #8B6914;
+}
+
+.bed-preview.l-shape {
+  border-radius: 2px;
+  width: 28px;
+  height: 20px;
+  position: relative;
+  clip-path: polygon(0 0, 60% 0, 60% 40%, 100% 40%, 100% 100%, 0 100%);
+}
+
+.bed-preview.shed {
+  width: 24px;
+  height: 18px;
+  background: #8B7355;
+  border: 2px solid #5C4A0E;
+  border-radius: 2px;
+  position: relative;
+}
+
+.bed-preview.fence {
+  width: 32px;
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    #A0522D 0px,
+    #A0522D 4px,
+    transparent 4px,
+    transparent 6px
+  );
+  border: 1px solid #5C4A0E;
+  border-radius: 1px;
+}
+
 .plant-icon-preview {
   font-size: 20px;
   width: 28px;

@@ -16,6 +16,12 @@ export const PLANT_CATALOG: PlantType[] = [
 export const DEFAULT_BED_WIDTH = 150;
 export const DEFAULT_BED_HEIGHT = 100;
 export const DEFAULT_BED_RADIUS = 60;
+export const DEFAULT_SHED_WIDTH = 100;
+export const DEFAULT_SHED_HEIGHT = 80;
+export const DEFAULT_FENCE_WIDTH = 200;
+export const DEFAULT_FENCE_HEIGHT = 10;
+export const SHED_FILL = '#8B7355';
+export const FENCE_FILL = '#A0522D';
 
 export const BED_FILL = '#8B6914';
 export const BED_STROKE = '#5C4A0E';
