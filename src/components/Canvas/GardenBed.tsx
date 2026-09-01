@@ -1,4 +1,4 @@
-import { Rect, Ellipse, Group, Text } from 'react-konva';
+import { Rect, Ellipse, Group, Text, Label, Tag } from 'react-konva';
 import Konva from 'konva';
 import type { GardenBed as GardenBedType, GardenAction, PlantType } from '../../types';
 import { BED_STROKE, BED_SELECTED_STROKE, PIXELS_PER_FOOT } from '../../constants';
@@ -110,6 +110,23 @@ export function GardenBedComponent({
           />
         );
       })}
+      {bed.plants.length > 0 && (
+        <Label x={bed.width - 4} y={bed.height - 4} listening={false}>
+          <Tag
+            fill="rgba(0,0,0,0.6)"
+            cornerRadius={8}
+            pointerDirection="none"
+          />
+          <Text
+            text={`${bed.plants.length}`}
+            fontSize={11}
+            fontStyle="bold"
+            fill="#fff"
+            padding={3}
+            listening={false}
+          />
+        </Label>
+      )}
     </Group>
   );
 }
