@@ -140,6 +140,39 @@ export function GardenBedComponent({
           dash={[8, 4]}
         />
       )}
+      {bed.shape === 'raised-bed' && (
+        <>
+          <Rect
+            x={0}
+            y={6}
+            width={bed.width}
+            height={bed.height - 6}
+            fill="#5C4A0E"
+            cornerRadius={3}
+            listening={false}
+          />
+          <Rect
+            width={bed.width}
+            height={bed.height - 6}
+            fill={bed.color}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+            cornerRadius={3}
+          />
+          <Line
+            points={[3, 0, 3, bed.height - 6]}
+            stroke="rgba(255,255,255,0.15)"
+            strokeWidth={1}
+            listening={false}
+          />
+          <Line
+            points={[bed.width - 3, 0, bed.width - 3, bed.height - 6]}
+            stroke="rgba(0,0,0,0.15)"
+            strokeWidth={1}
+            listening={false}
+          />
+        </>
+      )}
       {bed.shape === 'pond' && (
         <>
           <Ellipse

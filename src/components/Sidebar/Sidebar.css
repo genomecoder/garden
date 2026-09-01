@@ -105,6 +105,15 @@
   flex-shrink: 0;
 }
 
+.bed-preview.raised-bed {
+  width: 28px;
+  height: 20px;
+  background: #A0522D;
+  border: 2px solid #5C4A0E;
+  border-radius: 3px;
+  box-shadow: 0 3px 0 #5C4A0E;
+}
+
 .bed-preview.pond {
   width: 24px;
   height: 20px;
