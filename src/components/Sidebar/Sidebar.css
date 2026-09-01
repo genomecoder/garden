@@ -105,6 +105,15 @@
   flex-shrink: 0;
 }
 
+.bed-preview.bench {
+  width: 28px;
+  height: 14px;
+  background: #8B6914;
+  border: 2px solid #5C4A0E;
+  border-radius: 2px;
+  border-bottom: 3px solid #5C4A0E;
+}
+
 .bed-preview.tree {
   width: 24px;
   height: 24px;

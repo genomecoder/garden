@@ -1,4 +1,4 @@
-export type BedShape = 'rectangle' | 'circle' | 'triangle' | 'l-shape' | 'shed' | 'fence' | 'path' | 'pond' | 'raised-bed' | 'compost' | 'tree';
+export type BedShape = 'rectangle' | 'circle' | 'triangle' | 'l-shape' | 'shed' | 'fence' | 'path' | 'pond' | 'raised-bed' | 'compost' | 'tree' | 'bench';
 
 export interface GardenBed {
   id: string;

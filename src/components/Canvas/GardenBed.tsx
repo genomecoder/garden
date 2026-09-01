@@ -244,6 +244,95 @@ export function GardenBedComponent({
           dash={[8, 4]}
         />
       )}
+      {bed.shape === 'bench' && (() => {
+        const legW = bed.width * 0.06;
+        const legH = bed.height * 0.35;
+        const seatY = bed.height * 0.45;
+        const seatH = bed.height * 0.12;
+        const backY = bed.height * 0.1;
+        const backH = seatY - backY;
+        const backThick = bed.height * 0.08;
+        return (
+          <>
+            {/* Left leg */}
+            <Rect
+              x={bed.width * 0.1}
+              y={seatY + seatH}
+              width={legW}
+              height={legH}
+              fill="#5C4A0E"
+              listening={false}
+            />
+            {/* Right leg */}
+            <Rect
+              x={bed.width - bed.width * 0.1 - legW}
+              y={seatY + seatH}
+              width={legW}
+              height={legH}
+              fill="#5C4A0E"
+              listening={false}
+            />
+            {/* Seat */}
+            <Rect
+              x={0}
+              y={seatY}
+              width={bed.width}
+              height={seatH}
+              fill={bed.color}
+              stroke={stroke}
+              strokeWidth={strokeWidth}
+              cornerRadius={2}
+            />
+            {/* Seat plank lines */}
+            <Line
+              points={[0, seatY + seatH * 0.5, bed.width, seatY + seatH * 0.5]}
+              stroke="rgba(0,0,0,0.1)"
+              strokeWidth={1}
+              listening={false}
+            />
+            {/* Backrest */}
+            <Rect
+              x={bed.width * 0.02}
+              y={backY}
+              width={bed.width * 0.96}
+              height={backThick}
+              fill={bed.color}
+              stroke={stroke}
+              strokeWidth={strokeWidth}
+              cornerRadius={2}
+              listening={false}
+            />
+            <Rect
+              x={bed.width * 0.02}
+              y={backY + backH * 0.5}
+              width={bed.width * 0.96}
+              height={backThick}
+              fill={bed.color}
+              stroke={stroke}
+              strokeWidth={strokeWidth}
+              cornerRadius={2}
+              listening={false}
+            />
+            {/* Back supports */}
+            <Rect
+              x={bed.width * 0.1}
+              y={backY}
+              width={legW}
+              height={backH + seatH}
+              fill="#5C4A0E"
+              listening={false}
+            />
+            <Rect
+              x={bed.width - bed.width * 0.1 - legW}
+              y={backY}
+              width={legW}
+              height={backH + seatH}
+              fill="#5C4A0E"
+              listening={false}
+            />
+          </>
+        );
+      })()}
       {bed.shape === 'tree' && (() => {
         const cx = bed.width / 2;
         const cy = bed.height / 2;

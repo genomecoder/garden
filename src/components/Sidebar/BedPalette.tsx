@@ -12,6 +12,7 @@ const BED_OPTIONS: { shape: BedShape; label: string }[] = [
   { shape: 'raised-bed', label: 'Raised Bed' },
   { shape: 'compost', label: 'Compost Bin' },
   { shape: 'tree', label: 'Tree' },
+  { shape: 'bench', label: 'Garden Bench' },
 ];
 
 export function BedPalette() {

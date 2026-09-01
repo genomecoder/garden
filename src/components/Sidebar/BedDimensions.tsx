@@ -65,6 +65,7 @@ export function BedDimensions({ bed, dispatch, customPlants }: BedDimensionsProp
     'raised-bed': 'Raised Bed',
     compost: 'Compost Bin',
     tree: 'Tree',
+    bench: 'Garden Bench',
   };
 
   return (
