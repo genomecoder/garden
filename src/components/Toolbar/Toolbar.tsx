@@ -20,9 +20,11 @@ interface ToolbarProps {
   canUndo: boolean;
   canRedo: boolean;
   onExport: () => void;
+  userEmail: string;
+  onLogout: () => void;
 }
 
-export function Toolbar({ state, dispatch, undo, redo, canUndo, canRedo, onExport }: ToolbarProps) {
+export function Toolbar({ state, dispatch, undo, redo, canUndo, canRedo, onExport, userEmail, onLogout }: ToolbarProps) {
   const [showLayouts, setShowLayouts] = useState(false);
   const [layouts, setLayouts] = useState<SavedLayout[]>([]);
   const [currentLayoutId, setCurrentLayoutId] = useState<string | null>(null);
@@ -163,6 +165,9 @@ export function Toolbar({ state, dispatch, undo, redo, canUndo, canRedo, onExpor
         <button onClick={handleClear} className="btn-danger">
           Clear
         </button>
+        <span className="toolbar-separator" />
+        <span className="toolbar-user">{userEmail}</span>
+        <button onClick={onLogout} className="btn-logout">Sign Out</button>
       </div>
     </div>
   );

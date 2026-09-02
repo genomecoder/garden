@@ -1,13 +1,19 @@
 import { useRef, useCallback } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Konva from 'konva';
 import { useGardenState } from './hooks/useGardenState';
+import { useAuth } from './contexts/AuthContext';
 import { Toolbar } from './components/Toolbar/Toolbar';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { Canvas } from './components/Canvas/Canvas';
+import { LoginPage } from './components/Auth/LoginPage';
+import { RegisterPage } from './components/Auth/RegisterPage';
+import { ProtectedRoute } from './components/Auth/ProtectedRoute';
 import './App.css';
 
-function App() {
+function GardenApp() {
   const { state, dispatch, clipboardRef, undo, redo, canUndo, canRedo } = useGardenState();
+  const { user, logout } = useAuth();
   const stageRef = useRef<Konva.Stage>(null);
 
   const handleExport = useCallback(() => {
@@ -46,12 +52,26 @@ function App() {
         canUndo={canUndo}
         canRedo={canRedo}
         onExport={handleExport}
+        userEmail={user?.email ?? ''}
+        onLogout={logout}
       />
       <div className="app-body">
         <Sidebar state={state} dispatch={dispatch} />
         <Canvas state={state} dispatch={dispatch} clipboardRef={clipboardRef} stageRef={stageRef} />
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/*" element={<GardenApp />} />
+      </Route>
+    </Routes>
   );
 }
 

@@ -57,6 +57,34 @@
   background: #c0392b;
 }
 
+.toolbar-separator {
+  width: 1px;
+  height: 24px;
+  background: #7f8c8d;
+  margin: 0 4px;
+}
+
+.toolbar-user {
+  font-size: 13px;
+  color: #bdc3c7;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.toolbar-actions .btn-logout {
+  background: transparent;
+  border: 1px solid #7f8c8d;
+  color: #ecf0f1;
+  font-size: 13px;
+  padding: 4px 12px;
+}
+
+.toolbar-actions .btn-logout:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 /* Layouts dropdown */
 
 .layouts-wrapper {
