@@ -12,10 +12,13 @@ const initialState: GardenState = {
   customPlants: [],
   annotations: [],
   selectedBedId: null,
+  sunDirection: 180,
+  sunElevation: 45,
+  showSunOverlay: false,
 };
 
 // Actions that don't modify data and shouldn't create history entries
-const TRANSIENT_ACTIONS = new Set(['SELECT_BED', 'UNDO', 'REDO']);
+const TRANSIENT_ACTIONS = new Set(['SELECT_BED', 'UNDO', 'REDO', 'SET_SUN_DIRECTION', 'SET_SUN_ELEVATION', 'TOGGLE_SUN_OVERLAY']);
 
 interface HistoryState {
   past: GardenState[];
@@ -291,8 +294,14 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
         ...state,
         annotations: state.annotations.filter((a) => a.id !== action.payload.id),
       };
+    case 'SET_SUN_DIRECTION':
+      return { ...state, sunDirection: action.payload.sunDirection };
+    case 'SET_SUN_ELEVATION':
+      return { ...state, sunElevation: action.payload.sunElevation };
+    case 'TOGGLE_SUN_OVERLAY':
+      return { ...state, showSunOverlay: !state.showSunOverlay };
     case 'LOAD_GARDEN':
-      return { ...action.payload, customPlants: action.payload.customPlants ?? [], annotations: action.payload.annotations ?? [], selectedBedId: null };
+      return { ...action.payload, customPlants: action.payload.customPlants ?? [], annotations: action.payload.annotations ?? [], selectedBedId: null, sunDirection: action.payload.sunDirection ?? 180, sunElevation: action.payload.sunElevation ?? 45, showSunOverlay: action.payload.showSunOverlay ?? false };
     case 'CLEAR_GARDEN':
       return { ...initialState, name: state.name, customPlants: state.customPlants };
     default:

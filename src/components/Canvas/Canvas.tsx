@@ -7,6 +7,7 @@ import { findBedAtPoint } from '../../utils/geometry';
 import { GardenBedComponent } from './GardenBed';
 import { TransformerWrapper } from './TransformerWrapper';
 import { AnnotationNode } from './AnnotationNode';
+import { SunOverlay } from './SunOverlay';
 import './Canvas.css';
 
 interface ContextMenuState {
@@ -35,6 +36,7 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
   const [snapToGrid, setSnapToGrid] = useState(true);
   const isPanningRef = useRef(false);
   const isSpaceRef = useRef(false);
+  const didPanRef = useRef(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -108,10 +110,11 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
 
   const handleMouseDown = useCallback(
     (e: Konva.KonvaEventObject<MouseEvent>) => {
-      // Middle mouse button or space+left click starts pan
-      if (e.evt.button === 1 || (e.evt.button === 0 && isSpaceRef.current)) {
+      // Middle mouse button, right mouse button, or space+left click starts pan
+      if (e.evt.button === 1 || e.evt.button === 2 || (e.evt.button === 0 && isSpaceRef.current)) {
         e.evt.preventDefault();
         isPanningRef.current = true;
+        didPanRef.current = false;
         const stage = stageRef.current;
         if (stage) {
           stage.container().style.cursor = 'grabbing';
@@ -124,6 +127,9 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
   const handleMouseMove = useCallback(
     (e: Konva.KonvaEventObject<MouseEvent>) => {
       if (!isPanningRef.current) return;
+      if (e.evt.movementX !== 0 || e.evt.movementY !== 0) {
+        didPanRef.current = true;
+      }
       setPosition((prev) => ({
         x: prev.x + e.evt.movementX,
         y: prev.y + e.evt.movementY,
@@ -198,6 +204,10 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
   const handleContextMenu = useCallback(
     (e: Konva.KonvaEventObject<PointerEvent>) => {
       e.evt.preventDefault();
+
+      // If the user dragged with right-click, don't show the context menu
+      if (didPanRef.current) return;
+
       const stage = stageRef.current;
       if (!stage) return;
       const pointer = stage.getPointerPosition();
@@ -354,6 +364,13 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
       >
         <Layer>
           {gridElements}
+          {state.showSunOverlay && (
+            <SunOverlay
+              beds={state.beds}
+              sunDirection={state.sunDirection}
+              sunElevation={state.sunElevation}
+            />
+          )}
           {state.beds.map((bed) => (
             <GardenBedComponent
               key={bed.id}

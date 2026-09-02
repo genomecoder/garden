@@ -43,6 +43,9 @@ export interface GardenState {
   customPlants: PlantType[];
   annotations: Annotation[];
   selectedBedId: string | null;
+  sunDirection: number;
+  sunElevation: number;
+  showSunOverlay: boolean;
 }
 
 export type GardenAction =
@@ -68,4 +71,7 @@ export type GardenAction =
   | { type: 'UPDATE_ANNOTATION_STYLE'; payload: { id: string; color?: string; fontSize?: number } }
   | { type: 'DELETE_ANNOTATION'; payload: { id: string } }
   | { type: 'LOAD_GARDEN'; payload: GardenState }
-  | { type: 'CLEAR_GARDEN' };
+  | { type: 'CLEAR_GARDEN' }
+  | { type: 'SET_SUN_DIRECTION'; payload: { sunDirection: number } }
+  | { type: 'SET_SUN_ELEVATION'; payload: { sunElevation: number } }
+  | { type: 'TOGGLE_SUN_OVERLAY' };

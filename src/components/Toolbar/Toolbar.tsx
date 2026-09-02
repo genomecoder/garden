@@ -158,6 +158,13 @@ export function Toolbar({ state, dispatch, undo, redo, canUndo, canRedo, onExpor
             </div>
           )}
         </div>
+        <button
+          className={`btn-sun ${state.showSunOverlay ? 'active' : ''}`}
+          onClick={() => dispatch({ type: 'TOGGLE_SUN_OVERLAY' })}
+          title="Toggle sun/shadow overlay"
+        >
+          Sun
+        </button>
         <button onClick={() => dispatch({ type: 'ADD_ANNOTATION', payload: { x: 100, y: 100 } })}>
           Add Note
         </button>

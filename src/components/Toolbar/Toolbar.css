@@ -85,6 +85,16 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
+.toolbar-actions .btn-sun.active {
+  background: #f39c12;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.toolbar-actions .btn-sun.active:hover {
+  background: #e67e22;
+}
+
 /* Layouts dropdown */
 
 .layouts-wrapper {

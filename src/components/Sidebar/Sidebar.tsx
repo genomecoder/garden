@@ -2,6 +2,7 @@ import type { GardenState, GardenAction } from '../../types';
 import { BedPalette } from './BedPalette';
 import { PlantPalette } from './PlantPalette';
 import { BedDimensions } from './BedDimensions';
+import { SunControls } from './SunControls';
 import './Sidebar.css';
 
 interface SidebarProps {
@@ -16,6 +17,13 @@ export function Sidebar({ state, dispatch }: SidebarProps) {
     <aside className="sidebar">
       {selectedBed && (
         <BedDimensions bed={selectedBed} dispatch={dispatch} customPlants={state.customPlants ?? []} />
+      )}
+      {state.showSunOverlay && (
+        <SunControls
+          sunDirection={state.sunDirection}
+          sunElevation={state.sunElevation}
+          dispatch={dispatch}
+        />
       )}
       <BedPalette />
       <PlantPalette customPlants={state.customPlants ?? []} dispatch={dispatch} />

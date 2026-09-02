@@ -70,5 +70,23 @@ export const BED_COLORS = [
 export const PIXELS_PER_FOOT = 20;
 export const CANVAS_GRID_SIZE = PIXELS_PER_FOOT;
 
+export const BED_HEIGHTS: Record<string, number> = {
+  'tree': 12,
+  'shed': 8,
+  'greenhouse': 7,
+  'trellis': 6,
+  'fence': 4,
+  'rain-barrel': 3,
+  'rectangle': 0,
+  'circle': 0,
+  'triangle': 0,
+  'l-shape': 0,
+  'path': 0,
+  'pond': 0,
+  'raised-bed': 0,
+  'compost': 0,
+  'bench': 0,
+};
+
 export const STORAGE_KEY = 'garden-planner-state';
 export const LAYOUTS_KEY = 'garden-planner-layouts';
