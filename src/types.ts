@@ -46,6 +46,9 @@ export interface GardenState {
   sunDirection: number;
   sunElevation: number;
   showSunOverlay: boolean;
+  moonDirection: number;
+  moonElevation: number;
+  showMoonOverlay: boolean;
 }
 
 export type GardenAction =
@@ -74,4 +77,7 @@ export type GardenAction =
   | { type: 'CLEAR_GARDEN' }
   | { type: 'SET_SUN_DIRECTION'; payload: { sunDirection: number } }
   | { type: 'SET_SUN_ELEVATION'; payload: { sunElevation: number } }
-  | { type: 'TOGGLE_SUN_OVERLAY' };
+  | { type: 'TOGGLE_SUN_OVERLAY' }
+  | { type: 'SET_MOON_DIRECTION'; payload: { moonDirection: number } }
+  | { type: 'SET_MOON_ELEVATION'; payload: { moonElevation: number } }
+  | { type: 'TOGGLE_MOON_OVERLAY' };

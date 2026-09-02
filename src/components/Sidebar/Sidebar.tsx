@@ -3,6 +3,7 @@ import { BedPalette } from './BedPalette';
 import { PlantPalette } from './PlantPalette';
 import { BedDimensions } from './BedDimensions';
 import { SunControls } from './SunControls';
+import { MoonControls } from './MoonControls';
 import './Sidebar.css';
 
 interface SidebarProps {
@@ -22,6 +23,13 @@ export function Sidebar({ state, dispatch }: SidebarProps) {
         <SunControls
           sunDirection={state.sunDirection}
           sunElevation={state.sunElevation}
+          dispatch={dispatch}
+        />
+      )}
+      {state.showMoonOverlay && (
+        <MoonControls
+          moonDirection={state.moonDirection}
+          moonElevation={state.moonElevation}
           dispatch={dispatch}
         />
       )}

@@ -15,10 +15,13 @@ const initialState: GardenState = {
   sunDirection: 180,
   sunElevation: 45,
   showSunOverlay: false,
+  moonDirection: 0,
+  moonElevation: 30,
+  showMoonOverlay: false,
 };
 
 // Actions that don't modify data and shouldn't create history entries
-const TRANSIENT_ACTIONS = new Set(['SELECT_BED', 'UNDO', 'REDO', 'SET_SUN_DIRECTION', 'SET_SUN_ELEVATION', 'TOGGLE_SUN_OVERLAY']);
+const TRANSIENT_ACTIONS = new Set(['SELECT_BED', 'UNDO', 'REDO', 'SET_SUN_DIRECTION', 'SET_SUN_ELEVATION', 'TOGGLE_SUN_OVERLAY', 'SET_MOON_DIRECTION', 'SET_MOON_ELEVATION', 'TOGGLE_MOON_OVERLAY']);
 
 interface HistoryState {
   past: GardenState[];
@@ -300,8 +303,14 @@ function gardenReducer(state: GardenState, action: GardenAction): GardenState {
       return { ...state, sunElevation: action.payload.sunElevation };
     case 'TOGGLE_SUN_OVERLAY':
       return { ...state, showSunOverlay: !state.showSunOverlay };
+    case 'SET_MOON_DIRECTION':
+      return { ...state, moonDirection: action.payload.moonDirection };
+    case 'SET_MOON_ELEVATION':
+      return { ...state, moonElevation: action.payload.moonElevation };
+    case 'TOGGLE_MOON_OVERLAY':
+      return { ...state, showMoonOverlay: !state.showMoonOverlay };
     case 'LOAD_GARDEN':
-      return { ...action.payload, customPlants: action.payload.customPlants ?? [], annotations: action.payload.annotations ?? [], selectedBedId: null, sunDirection: action.payload.sunDirection ?? 180, sunElevation: action.payload.sunElevation ?? 45, showSunOverlay: action.payload.showSunOverlay ?? false };
+      return { ...action.payload, customPlants: action.payload.customPlants ?? [], annotations: action.payload.annotations ?? [], selectedBedId: null, sunDirection: action.payload.sunDirection ?? 180, sunElevation: action.payload.sunElevation ?? 45, showSunOverlay: action.payload.showSunOverlay ?? false, moonDirection: action.payload.moonDirection ?? 0, moonElevation: action.payload.moonElevation ?? 30, showMoonOverlay: action.payload.showMoonOverlay ?? false };
     case 'CLEAR_GARDEN':
       return { ...initialState, name: state.name, customPlants: state.customPlants };
     default:

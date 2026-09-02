@@ -8,6 +8,7 @@ import { GardenBedComponent } from './GardenBed';
 import { TransformerWrapper } from './TransformerWrapper';
 import { AnnotationNode } from './AnnotationNode';
 import { SunOverlay } from './SunOverlay';
+import { MoonOverlay } from './MoonOverlay';
 import './Canvas.css';
 
 interface ContextMenuState {
@@ -395,6 +396,15 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
               dispatch={dispatch}
             />
           ))}
+          {state.showMoonOverlay && (
+            <MoonOverlay
+              beds={state.beds}
+              moonDirection={state.moonDirection}
+              moonElevation={state.moonElevation}
+              worldTopLeft={worldTopLeft}
+              worldBottomRight={worldBottomRight}
+            />
+          )}
         </Layer>
       </Stage>
       <div className="scale-indicator">

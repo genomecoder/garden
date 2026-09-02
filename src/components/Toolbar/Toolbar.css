@@ -95,6 +95,16 @@
   background: #e67e22;
 }
 
+.toolbar-actions .btn-moon.active {
+  background: #a0b4d4;
+  color: #1a1a2e;
+  font-weight: 600;
+}
+
+.toolbar-actions .btn-moon.active:hover {
+  background: #8a9ec0;
+}
+
 /* Layouts dropdown */
 
 .layouts-wrapper {
