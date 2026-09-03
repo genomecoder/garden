@@ -370,6 +370,7 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
               beds={state.beds}
               sunDirection={state.sunDirection}
               sunElevation={state.sunElevation}
+              weatherCondition={state.weatherCondition}
             />
           )}
           {state.beds.map((bed) => (
@@ -401,6 +402,7 @@ export function Canvas({ state, dispatch, clipboardRef, stageRef }: CanvasProps)
               beds={state.beds}
               moonDirection={state.moonDirection}
               moonElevation={state.moonElevation}
+              weatherCondition={state.weatherCondition}
               worldTopLeft={worldTopLeft}
               worldBottomRight={worldBottomRight}
             />

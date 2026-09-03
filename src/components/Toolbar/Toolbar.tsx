@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import type { GardenState, GardenAction } from '../../types';
+import type { GardenState, GardenAction, WeatherCondition } from '../../types';
 import {
   saveGarden,
   clearGarden,
@@ -172,6 +172,22 @@ export function Toolbar({ state, dispatch, undo, redo, canUndo, canRedo, onExpor
         >
           Moon
         </button>
+        <select
+          className="weather-select"
+          value={state.weatherCondition}
+          onChange={(e) =>
+            dispatch({
+              type: 'SET_WEATHER_CONDITION',
+              payload: { weatherCondition: e.target.value as WeatherCondition },
+            })
+          }
+          title="Weather condition (affects shadow opacity)"
+        >
+          <option value="clear">Clear</option>
+          <option value="partly-cloudy">Partly Cloudy</option>
+          <option value="overcast">Overcast</option>
+          <option value="foggy">Foggy</option>
+        </select>
         <button onClick={() => dispatch({ type: 'ADD_ANNOTATION', payload: { x: 100, y: 100 } })}>
           Add Note
         </button>

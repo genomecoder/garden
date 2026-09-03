@@ -1,11 +1,12 @@
 import { Rect, Line } from 'react-konva';
-import type { GardenBed } from '../../types';
-import { BED_HEIGHTS, PIXELS_PER_FOOT } from '../../constants';
+import type { GardenBed, WeatherCondition } from '../../types';
+import { BED_HEIGHTS, PIXELS_PER_FOOT, WEATHER_SHADOW_MULTIPLIER, WEATHER_DARKNESS_MULTIPLIER } from '../../constants';
 
 interface MoonOverlayProps {
   beds: GardenBed[];
   moonDirection: number;
   moonElevation: number;
+  weatherCondition: WeatherCondition;
   /** Visible world bounds for the darkness rect */
   worldTopLeft: { x: number; y: number };
   worldBottomRight: { x: number; y: number };
@@ -127,11 +128,14 @@ export function MoonOverlay({
   beds,
   moonDirection,
   moonElevation,
+  weatherCondition,
   worldTopLeft,
   worldBottomRight,
 }: MoonOverlayProps) {
   const shadowAngle = degToRad(moonDirection + 180);
   const elevRad = degToRad(moonElevation);
+  const shadowOpacity = 0.10 * WEATHER_SHADOW_MULTIPLIER[weatherCondition];
+  const darknessOpacity = 0.45 * WEATHER_DARKNESS_MULTIPLIER[weatherCondition];
 
   const shadows: { key: string; points: number[] }[] = [];
 
@@ -163,7 +167,7 @@ export function MoonOverlay({
         y={darkY}
         width={darkW}
         height={darkH}
-        fill="rgba(10, 15, 40, 0.45)"
+        fill={`rgba(10, 15, 40, ${darknessOpacity})`}
         listening={false}
       />
       {/* Faint moon shadows */}
@@ -172,7 +176,7 @@ export function MoonOverlay({
           key={`moon-shadow-${key}`}
           points={points}
           closed
-          fill="rgba(0,0,0,0.10)"
+          fill={`rgba(0,0,0,${shadowOpacity})`}
           listening={false}
         />
       ))}

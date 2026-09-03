@@ -105,6 +105,25 @@
   background: #8a9ec0;
 }
 
+.weather-select {
+  padding: 6px 10px;
+  border: 1px solid #7f8c8d;
+  border-radius: 4px;
+  background: #34495e;
+  color: #ecf0f1;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.weather-select:hover {
+  border-color: #3498db;
+}
+
+.weather-select:focus {
+  border-color: #3498db;
+}
+
 /* Layouts dropdown */
 
 .layouts-wrapper {

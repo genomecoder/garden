@@ -1,11 +1,12 @@
 import { Line } from 'react-konva';
-import type { GardenBed } from '../../types';
-import { BED_HEIGHTS, PIXELS_PER_FOOT } from '../../constants';
+import type { GardenBed, WeatherCondition } from '../../types';
+import { BED_HEIGHTS, PIXELS_PER_FOOT, WEATHER_SHADOW_MULTIPLIER } from '../../constants';
 
 interface SunOverlayProps {
   beds: GardenBed[];
   sunDirection: number;
   sunElevation: number;
+  weatherCondition: WeatherCondition;
 }
 
 function degToRad(deg: number): number {
@@ -132,11 +133,12 @@ function flattenHull(hull: [number, number][]): number[] {
   return flat;
 }
 
-export function SunOverlay({ beds, sunDirection, sunElevation }: SunOverlayProps) {
+export function SunOverlay({ beds, sunDirection, sunElevation, weatherCondition }: SunOverlayProps) {
   // Shadow direction is opposite of sun direction
   const shadowAngle = degToRad(sunDirection + 180);
   const elevRad = degToRad(sunElevation);
 
+  const shadowOpacity = 0.15 * WEATHER_SHADOW_MULTIPLIER[weatherCondition];
   const shadows: { key: string; points: number[] }[] = [];
 
   for (const bed of beds) {
@@ -160,7 +162,7 @@ export function SunOverlay({ beds, sunDirection, sunElevation }: SunOverlayProps
           key={`shadow-${key}`}
           points={points}
           closed
-          fill="rgba(0,0,0,0.15)"
+          fill={`rgba(0,0,0,${shadowOpacity})`}
           listening={false}
         />
       ))}

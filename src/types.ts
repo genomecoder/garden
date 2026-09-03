@@ -1,5 +1,7 @@
 export type BedShape = 'rectangle' | 'circle' | 'triangle' | 'l-shape' | 'shed' | 'fence' | 'path' | 'pond' | 'raised-bed' | 'compost' | 'tree' | 'bench' | 'trellis' | 'rain-barrel' | 'greenhouse';
 
+export type WeatherCondition = 'clear' | 'partly-cloudy' | 'overcast' | 'foggy';
+
 export interface GardenBed {
   id: string;
   shape: BedShape;
@@ -49,6 +51,7 @@ export interface GardenState {
   moonDirection: number;
   moonElevation: number;
   showMoonOverlay: boolean;
+  weatherCondition: WeatherCondition;
 }
 
 export type GardenAction =
@@ -80,4 +83,5 @@ export type GardenAction =
   | { type: 'TOGGLE_SUN_OVERLAY' }
   | { type: 'SET_MOON_DIRECTION'; payload: { moonDirection: number } }
   | { type: 'SET_MOON_ELEVATION'; payload: { moonElevation: number } }
-  | { type: 'TOGGLE_MOON_OVERLAY' };
+  | { type: 'TOGGLE_MOON_OVERLAY' }
+  | { type: 'SET_WEATHER_CONDITION'; payload: { weatherCondition: WeatherCondition } };

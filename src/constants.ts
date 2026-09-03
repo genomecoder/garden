@@ -1,4 +1,4 @@
-import type { PlantType } from './types';
+import type { PlantType, WeatherCondition } from './types';
 
 export const PLANT_CATALOG: PlantType[] = [
   { id: 'tomato', name: 'Tomato', color: '#e74c3c', icon: '🍅' },
@@ -86,6 +86,20 @@ export const BED_HEIGHTS: Record<string, number> = {
   'raised-bed': 0,
   'compost': 0,
   'bench': 0,
+};
+
+export const WEATHER_SHADOW_MULTIPLIER: Record<WeatherCondition, number> = {
+  'clear': 1.0,
+  'partly-cloudy': 0.5,
+  'overcast': 0.1,
+  'foggy': 0.05,
+};
+
+export const WEATHER_DARKNESS_MULTIPLIER: Record<WeatherCondition, number> = {
+  'clear': 1.0,
+  'partly-cloudy': 0.8,
+  'overcast': 0.6,
+  'foggy': 0.7,
 };
 
 export const STORAGE_KEY = 'garden-planner-state';
