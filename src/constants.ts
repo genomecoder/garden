@@ -45,6 +45,9 @@ export const RAIN_BARREL_FILL = '#4A6B8A';
 export const DEFAULT_GREENHOUSE_WIDTH = 160;
 export const DEFAULT_GREENHOUSE_HEIGHT = 120;
 export const GREENHOUSE_FILL = '#C8E6C9';
+export const DEFAULT_BIRD_BATH_WIDTH = 50;
+export const DEFAULT_BIRD_BATH_HEIGHT = 50;
+export const BIRD_BATH_FILL = '#A0A0A0';
 export const SHED_FILL = '#8B7355';
 export const FENCE_FILL = '#A0522D';
 export const PATH_FILL = '#C8B99A';
@@ -85,6 +88,7 @@ export const BED_HEIGHTS: Record<string, number> = {
   'pond': 0,
   'raised-bed': 0,
   'compost': 0,
+  'bird-bath': 2,
   'bench': 0,
 };
 

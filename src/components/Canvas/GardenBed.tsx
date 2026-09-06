@@ -696,6 +696,58 @@ export function GardenBedComponent({
           </>
         );
       })()}
+      {bed.shape === 'bird-bath' && (() => {
+        const cx = bed.width / 2;
+        const cy = bed.height / 2;
+        const baseW = bed.width * 0.2;
+        const baseH = bed.height * 0.35;
+        const basinRx = bed.width * 0.45;
+        const basinRy = bed.height * 0.35;
+        const waterRx = basinRx * 0.7;
+        const waterRy = basinRy * 0.6;
+        return (
+          <>
+            {/* Pedestal */}
+            <Rect
+              x={cx - baseW / 2}
+              y={cy}
+              width={baseW}
+              height={baseH}
+              fill="#888"
+              cornerRadius={2}
+              listening={false}
+            />
+            {/* Basin */}
+            <Ellipse
+              x={cx}
+              y={cy}
+              radiusX={basinRx}
+              radiusY={basinRy}
+              fill={bed.color}
+              stroke={stroke}
+              strokeWidth={strokeWidth}
+            />
+            {/* Water */}
+            <Ellipse
+              x={cx}
+              y={cy}
+              radiusX={waterRx}
+              radiusY={waterRy}
+              fill="#5B9BD5"
+              listening={false}
+            />
+            {/* Highlight */}
+            <Ellipse
+              x={cx - waterRx * 0.3}
+              y={cy - waterRy * 0.3}
+              radiusX={waterRx * 0.3}
+              radiusY={waterRy * 0.25}
+              fill="rgba(255,255,255,0.25)"
+              listening={false}
+            />
+          </>
+        );
+      })()}
       {bed.shape === 'path' && (
         <Rect
           width={bed.width}

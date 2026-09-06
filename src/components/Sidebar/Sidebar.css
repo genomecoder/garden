@@ -194,6 +194,14 @@
   border-radius: 8px 8px 2px 2px;
 }
 
+.bed-preview.bird-bath {
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle at 50% 50%, #5B9BD5 40%, #A0A0A0 40%);
+  border: 2px solid #808080;
+  border-radius: 50%;
+}
+
 .plant-icon-img-preview {
   width: 20px;
   height: 20px;
